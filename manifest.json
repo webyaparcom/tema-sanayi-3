@@ -1,0 +1,29 @@
+{
+  "name": "Eksen Redüktör",
+  "short_name": "Eksen Redükt",
+  "description": "Eksen Redüktör: Bursa’da helisel, konik-helisel, planet ve servo redüktör üretimi; her redüktör yük altında denenir. Eksen Defteri’nde ürün kuşakları, test standı ve saha keşfi. Demo site; rakamlar kurgusaldır.",
+  "start_url": "/tr/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#E3B505",
+  "lang": "tr",
+  "icons": [
+    {
+      "src": "/img/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

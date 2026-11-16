@@ -1,0 +1,46 @@
+{
+  "id": "kalitepolitikamiz",
+  "name": {
+    "tr": "Kalite Politikamız",
+    "en": "Quality Policy",
+    "ar": "سياسة الجودة"
+  },
+  "description": {
+    "tr": "Kalite politikamız",
+    "en": "Our quality policy",
+    "ar": "سياسة الجودة لدينا"
+  },
+  "keyword": {
+    "tr": "Kalite Politikamız",
+    "en": "quality policy, quality, continuous improvement",
+    "ar": "سياسة الجودة, الجودة, التحسين المستمر"
+  },
+  "path": "kalitepolitikamiz",
+  "icon": "verified",
+  "category": "",
+  "status": "play",
+  "desing": {
+    "header": [],
+    "body": [],
+    "footer": []
+  },
+  "index": 2,
+  "url": "",
+  "text": {
+    "tr": "<h2>Kalite Politikamız</h2>\n<p>Taşlanmış dişli, dört saat tam yük testi, titreşim ve sıcaklık kaydı; kayıtlar müşteriyle paylaşılır.</p>",
+    "en": "<h2>Our quality policy</h2>\n<p>Ground gears, a four-hour full-load test, vibration and temperature logs; records are shared with the customer.</p>",
+    "ar": "<h2>سياسة الجودة لدينا</h2>\n<p>تروس مجلّخة واختبار حمل كامل لأربع ساعات وسجلات الاهتزاز والحرارة؛ وتُشارك السجلات مع العميل.</p>"
+  },
+  "title": {
+    "tr": "Kalite Politikamız",
+    "en": "Quality Policy",
+    "ar": "سياسة الجودة"
+  },
+  "date": "2026-11-16T20:22:06.358Z",
+  "update": "2026-11-16T20:24:51.187Z",
+  "sablonIzi": "acedf6b7c400faec",
+  "sablonIziDil": {
+    "en": "587042c99dce90ca",
+    "ar": "a5348f544603b25e"
+  }
+}

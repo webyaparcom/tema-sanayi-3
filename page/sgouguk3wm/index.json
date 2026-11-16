@@ -1,0 +1,39 @@
+{
+  "id": "sgouguk3wm",
+  "name": {
+    "tr": "Sorular",
+    "en": "Questions",
+    "ar": "الأسئلة"
+  },
+  "description": {
+    "tr": "Redüktör seçimi, yağ, revizyon ve teslim üzerine okur soruları.",
+    "en": "Reader questions on sizing, oil, overhaul and lead time.",
+    "ar": "أسئلة القرّاء عن الاختيار والزيت والصيانة ومدة التسليم."
+  },
+  "keyword": {
+    "tr": "sss, soru cevap",
+    "en": "faq, questions",
+    "ar": "أسئلة وأجوبة"
+  },
+  "path": "sorular",
+  "icon": "help",
+  "category": "",
+  "status": "play",
+  "desing": {
+    "header": [],
+    "body": [
+      "6au9az"
+    ],
+    "footer": []
+  },
+  "index": 1,
+  "url": "",
+  "text": {},
+  "title": {
+    "tr": "Sorular",
+    "en": "Questions",
+    "ar": "الأسئلة"
+  },
+  "date": "2026-11-16T20:22:06.520Z",
+  "update": "2026-11-16T20:24:51.171Z"
+}
