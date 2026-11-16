@@ -1,0 +1,384 @@
+<section class="modulex-randevu-kesif-plan{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-randevu-kesif-plan-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* randevu-kesif-plan — randevu-hizmet-sepeti çoklu seçimi kart ızgarası + fiyat toplamıyla yapar; bu modül seçimi bir mekân metaforunda (farklı boyutlu oda karolarından oluşan kat planı) yaptırır, saat yerine gün dilimi ve adres/m² ister (plan parçası) — yerinde keşif/ölçü randevusuna özgü iskelet. */
+  .modulex-randevu-kesif-plan { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-randevu-kesif-plan *, .modulex-randevu-kesif-plan *::before, .modulex-randevu-kesif-plan *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-randevu-kesif-plan :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-randevu-kesif-plan :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-randevu-kesif-plan :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-randevu-kesif-plan :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-randevu-kesif-plan img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-randevu-kesif-plan) img { height: auto; }
+  .modulex-randevu-kesif-plan [hidden] { display: none !important; }
+  .modulex-randevu-kesif-plan :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-randevu-kesif-plan :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-randevu-kesif-plan-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-randevu-kesif-plan-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-randevu-kesif-plan--bassiz .modulex-randevu-kesif-plan-bas { display: none; }
+  .modulex-randevu-kesif-plan-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-randevu-kesif-plan-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-randevu-kesif-plan-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-randevu-kesif-plan-bas { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px 48px; align-items: end; }
+  .modulex-randevu-kesif-plan-ust { grid-column: 1 / -1; }
+  .modulex-randevu-kesif-plan-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-randevu-kesif-plan-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-randevu-kesif-plan-dugme:hover { transform: translateY(-2px); }
+  .modulex-randevu-kesif-plan-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-randevu-kesif-plan-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-randevu-kesif-plan-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-randevu-kesif-plan-form { position: relative; display: grid; gap: 18px; }
+  .modulex-randevu-kesif-plan-alanlar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .modulex-randevu-kesif-plan-alan { display: grid; align-content: start; gap: 6px; min-width: 0; }
+  .modulex-randevu-kesif-plan-alan--genis { grid-column: 1 / -1; }
+  .modulex-randevu-kesif-plan-etiket { color: --text--; font-size: 0.9rem; font-weight: 650; }
+  .modulex-randevu-kesif-plan-zor { color: --accentInk--; }
+  .modulex-randevu-kesif-plan-girdi { width: 100%; min-height: 48px; padding: 11px 14px; border: 1.5px solid color-mix(in srgb, --text-- 32%, transparent); border-radius: calc(--yuvarlak-- * 0.6); background-color: --bg--; color: --text--; font: inherit; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+  textarea.modulex-randevu-kesif-plan-girdi { min-height: 108px; resize: vertical; }
+  .modulex-randevu-kesif-plan-girdi:hover { border-color: color-mix(in srgb, --text-- 55%, transparent); }
+  .modulex-randevu-kesif-plan-girdi:focus { border-color: --accent--; outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, --accent-- 28%, transparent); }
+  .modulex-randevu-kesif-plan-grup { display: grid; gap: 10px; min-width: 0; margin: 0; padding: 0; border: 0; }
+  .modulex-randevu-kesif-plan-grup > legend { padding: 0; margin-block-end: 10px; }
+  .modulex-randevu-kesif-plan-secenekler { display: flex; flex-wrap: wrap; gap: 8px; }
+  .modulex-randevu-kesif-plan-radyo { position: absolute; inset-block-start: 0; inset-inline-start: 0; inline-size: 1px; block-size: 1px; opacity: 0; pointer-events: none; }
+  .modulex-randevu-kesif-plan-cip, .modulex-randevu-kesif-plan-saat, .modulex-randevu-kesif-plan-hkart { position: relative; display: inline-flex; cursor: pointer; }
+  .modulex-randevu-kesif-plan-cyazi, .modulex-randevu-kesif-plan-syazi { display: inline-flex; flex-direction: column; justify-content: center; min-height: 44px; padding: 8px 16px; border: 1.5px solid color-mix(in srgb, --text-- 30%, transparent); border-radius: 999px; background-color: --bg--; color: --text--; font-weight: 650; line-height: 1.25; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; }
+  .modulex-randevu-kesif-plan-syazi { min-width: 74px; align-items: center; font-variant-numeric: tabular-nums; }
+  .modulex-randevu-kesif-plan-cyazi small { color: --muted--; font-size: 0.8rem; font-weight: 500; }
+  .modulex-randevu-kesif-plan-cip:hover .modulex-randevu-kesif-plan-cyazi, .modulex-randevu-kesif-plan-saat:hover .modulex-randevu-kesif-plan-syazi { border-color: --accent--; transform: translateY(-1px); }
+  .modulex-randevu-kesif-plan-radyo:checked + :is(.modulex-randevu-kesif-plan-cyazi, .modulex-randevu-kesif-plan-syazi) { border-color: --accent--; background-color: --accent--; color: --accentText--; }
+  .modulex-randevu-kesif-plan-radyo:checked + .modulex-randevu-kesif-plan-cyazi small { color: inherit; }
+  .modulex-randevu-kesif-plan-radyo:focus-visible + * { outline: 3px solid --accent--; outline-offset: 2px; }
+  .modulex-randevu-kesif-plan-dilimler { display: grid; gap: 14px; }
+  .modulex-randevu-kesif-plan-dilim { display: grid; gap: 8px; }
+  .modulex-randevu-kesif-plan-dbaslik { display: flex; align-items: center; gap: 6px; color: --muted--; font-size: 0.85rem; font-weight: 650; }
+  .modulex-randevu-kesif-plan-dbaslik .material-symbols-outlined { font-size: 18px; }
+  .modulex-randevu-kesif-plan-gunler { display: flex; gap: 8px; overflow-x: auto; padding-block-end: 6px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+  .modulex-randevu-kesif-plan-gun { position: relative; display: grid; flex: none; justify-items: center; gap: 2px; min-width: 66px; padding: 10px 8px; border: 1.5px solid color-mix(in srgb, --text-- 30%, transparent); border-radius: 14px; background-color: --bg--; color: --text--; scroll-snap-align: start; cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+  .modulex-randevu-kesif-plan-gun:hover { border-color: --accent--; }
+  .modulex-randevu-kesif-plan-gun:has(:checked) { border-color: --accent--; background-color: --accent--; color: --accentText--; }
+  .modulex-randevu-kesif-plan-gun:has(:focus-visible) { outline: 3px solid --accent--; outline-offset: 2px; }
+  .modulex-randevu-kesif-plan-gad, .modulex-randevu-kesif-plan-gay { font-size: 0.78rem; font-weight: 600; }
+  .modulex-randevu-kesif-plan-gno { font-size: 1.35rem; font-weight: 800; line-height: 1.1; }
+  .modulex-randevu-kesif-plan-sayac { display: flex; align-items: stretch; gap: 8px; }
+  .modulex-randevu-kesif-plan-kisi { text-align: center; font-variant-numeric: tabular-nums; }
+  .modulex-randevu-kesif-plan-adimla { display: inline-grid; flex: none; place-items: center; width: 48px; min-height: 48px; border: 1.5px solid color-mix(in srgb, --text-- 32%, transparent); border-radius: calc(--yuvarlak-- * 0.6); background-color: --bg--; color: --text--; transition: border-color 0.2s ease, background-color 0.2s ease; }
+  .modulex-randevu-kesif-plan-adimla:hover { border-color: --accent--; }
+  .modulex-randevu-kesif-plan:not(.modulex-randevu-kesif-plan--rjs) :is([data-ileri], [data-geri], [data-eksi], [data-arti]) { display: none; }
+  .modulex-randevu-kesif-plan-onay { display: flex; align-items: flex-start; gap: 10px; color: --muted--; font-size: 0.9rem; }
+  .modulex-randevu-kesif-plan-onaykutu { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: --accent--; }
+  .modulex-randevu-kesif-plan-onay a { color: --accentInk--; font-weight: 650; }
+  .modulex-randevu-kesif-plan-gkap { display: grid; justify-items: start; gap: 10px; }
+  .modulex-randevu-kesif-plan-gonder:disabled { opacity: 0.6; transform: none; }
+  .modulex-randevu-kesif-plan-durum { color: --accentInk--; font-weight: 650; }
+  .modulex-randevu-kesif-plan-durum:empty { display: none; }
+  .modulex-randevu-kesif-plan-durum--hata { color: --text--; text-decoration: underline wavy; text-decoration-color: --accent--; }
+  .modulex-randevu-kesif-plan-adimnav { display: flex; flex-wrap: wrap; gap: 10px; }
+  .modulex-randevu-kesif-plan-bal { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
+  .modulex-randevu-kesif-plan-kanallar { display: grid; gap: 14px; }
+  .modulex-randevu-kesif-plan-kanal { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .modulex-randevu-kesif-plan-kikon { flex: none; display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background-color: color-mix(in srgb, --accent-- 14%, transparent); color: --accentInk--; font-size: 22px; }
+  .modulex-randevu-kesif-plan-kyazi { display: grid; min-width: 0; }
+  .modulex-randevu-kesif-plan-ket { color: --muted--; font-size: 0.8rem; font-weight: 600; }
+  .modulex-randevu-kesif-plan-kdeger { color: inherit; font-weight: 700; text-decoration: none; overflow-wrap: anywhere; transition: color 0.2s ease; }
+  .modulex-randevu-kesif-plan-kdeger:hover { color: --accentInk--; text-decoration: underline; text-underline-offset: 3px; }
+  .modulex-randevu-kesif-plan-cizelge { display: grid; gap: 2px; margin: 0; }
+  .modulex-randevu-kesif-plan-csatir { display: flex; justify-content: space-between; gap: 12px; padding-block: 7px; border-block-end: 1px dashed --cizgi--; }
+  .modulex-randevu-kesif-plan-csatir dt { font-weight: 600; }
+  .modulex-randevu-kesif-plan-csatir dd { margin: 0; font-variant-numeric: tabular-nums; }
+  .modulex-randevu-kesif-plan-csatir--kapali { color: --muted--; }
+  @media (max-width: 768px) {
+    .modulex-randevu-kesif-plan-alanlar { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  .modulex-randevu-kesif-plan-form--plan { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; gap: clamp(24px, 4vw, 52px); }
+  .modulex-randevu-kesif-plan-pafta { position: sticky; inset-block-start: 96px; display: grid; gap: 14px; padding: clamp(16px, 2.4vw, 26px); border-radius: --yuvarlak--; background-color: --bg--; background-image: linear-gradient(color-mix(in srgb, --accent-- 10%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, --accent-- 10%, transparent) 1px, transparent 1px); background-size: 22px 22px; box-shadow: 0 0 0 1px --cizgi--; }
+  .modulex-randevu-kesif-plan-pust { display: flex; align-items: center; gap: 14px; }
+  .modulex-randevu-kesif-plan-pusula { color: --accentInk--; font-size: 30px; transition: transform 0.6s ease; }
+  .modulex-randevu-kesif-plan-pafta:hover .modulex-randevu-kesif-plan-pusula { transform: rotate(-30deg); }
+  .modulex-randevu-kesif-plan-olcek { flex: 0 1 120px; height: 9px; border: 2px solid --text--; border-block-start: 0; }
+  .modulex-randevu-kesif-plan-psay { display: inline-flex; align-items: center; gap: 6px; margin-inline-start: auto; padding: 4px 12px; border-radius: 999px; background-color: --text--; color: --bg--; font-weight: 800; font-variant-numeric: tabular-nums; transition: background-color 0.3s ease, color 0.3s ease; }
+  .modulex-randevu-kesif-plan-psay .material-symbols-outlined { font-size: 18px; }
+  .modulex-randevu-kesif-plan--secili .modulex-randevu-kesif-plan-psay { background-color: --accent--; color: --accentText--; }
+  .modulex-randevu-kesif-plan:not(.modulex-randevu-kesif-plan--pjs) .modulex-randevu-kesif-plan-psay { display: none; }
+  .modulex-randevu-kesif-plan-kat { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: minmax(112px, auto); grid-auto-flow: dense; border: 5px solid --text--; border-radius: 4px; background-color: --bg--; }
+  .modulex-randevu-kesif-plan-oda { position: relative; display: grid; grid-column: span var(--sx, 2); grid-row: span var(--sy, 1); cursor: pointer; }
+  .modulex-randevu-kesif-plan-oic { position: relative; display: grid; align-content: start; gap: 4px; height: 100%; padding: 16px 16px 46px; background-color: transparent; box-shadow: inset 0 0 0 1.5px --text--; transition: background-color 0.25s ease, box-shadow 0.25s ease; }
+  .modulex-randevu-kesif-plan-oic::before { content: ""; position: absolute; inset-block-end: 1.5px; inset-inline-start: 22px; width: 34px; height: 34px; border-block-start: 1.5px dashed color-mix(in srgb, --text-- 45%, transparent); border-inline-end: 1.5px dashed color-mix(in srgb, --text-- 45%, transparent); border-start-end-radius: 34px; pointer-events: none; }
+  .modulex-randevu-kesif-plan-oic::after { content: ""; position: absolute; inset-block-end: -2px; inset-inline-start: 22px; width: 34px; height: 5px; background-color: --bg--; }
+  .modulex-randevu-kesif-plan-oda:hover .modulex-randevu-kesif-plan-oic { background-color: color-mix(in srgb, --accent-- 8%, --bg--); }
+  .modulex-randevu-kesif-plan-radyo:checked + .modulex-randevu-kesif-plan-oic { background-color: color-mix(in srgb, --accent-- 16%, --bg--); background-image: repeating-linear-gradient(45deg, color-mix(in srgb, --accent-- 20%, transparent) 0 2px, transparent 2px 11px); box-shadow: inset 0 0 0 1.5px --text--, inset 0 0 0 5px color-mix(in srgb, --accent-- 45%, transparent); }
+  .modulex-randevu-kesif-plan-oikon { justify-self: start; color: --accentInk--; font-size: 28px; }
+  .modulex-randevu-kesif-plan-oic b { font-weight: 750; }
+  .modulex-randevu-kesif-plan-oic small { color: --muted--; font-size: 0.82rem; }
+  .modulex-randevu-kesif-plan-otik { position: absolute; inset-block-start: 12px; inset-inline-end: 12px; display: grid; place-items: center; width: 28px; height: 28px; border: 2px solid --text--; border-radius: 6px; background-color: --bg--; transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.25s ease; }
+  .modulex-randevu-kesif-plan-otik .material-symbols-outlined { font-size: 20px; visibility: hidden; }
+  .modulex-randevu-kesif-plan-radyo:checked + .modulex-randevu-kesif-plan-oic .modulex-randevu-kesif-plan-otik { border-color: --accent--; background-color: --accent--; color: --accentText--; transform: rotate(-8deg); }
+  .modulex-randevu-kesif-plan-radyo:checked + .modulex-randevu-kesif-plan-oic .modulex-randevu-kesif-plan-otik .material-symbols-outlined { visibility: visible; }
+  .modulex-randevu-kesif-plan-psec { display: flex; flex-wrap: wrap; gap: 6px; }
+  .modulex-randevu-kesif-plan-psec:empty { display: none; }
+  .modulex-randevu-kesif-plan-psec li { padding: 4px 12px; border-radius: 999px; background-color: --accent--; color: --accentText--; font-size: 0.85rem; font-weight: 700; animation: modulex-randevu-kesif-plan-pek 0.3s ease both; }
+  @keyframes modulex-randevu-kesif-plan-pek { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: none; } }
+  .modulex-randevu-kesif-plan-kesif { display: grid; gap: 18px; min-width: 0; padding: clamp(20px, 3vw, 32px); border-radius: --yuvarlak--; background-color: --kartBg--; box-shadow: 0 30px 60px -48px color-mix(in srgb, --text-- 60%, transparent); }
+  .modulex-randevu-kesif-plan-adres { min-height: 76px; }
+  @media (max-width: 1024px) {
+    .modulex-randevu-kesif-plan-form--plan { grid-template-columns: minmax(0, 1fr); }
+    .modulex-randevu-kesif-plan-pafta { position: static; }
+  }
+  @media (max-width: 768px) {
+    .modulex-randevu-kesif-plan-kat { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(100px, auto); }
+    .modulex-randevu-kesif-plan-oda { grid-column: span 1; grid-row: span 1; }
+    .modulex-randevu-kesif-plan-oda:first-child { grid-column: 1 / -1; }
+  }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-randevu-kesif-plan :is(.modulex-randevu-kesif-plan-baslik, .modulex-randevu-kesif-plan-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-randevu-kesif-plan-baslik { line-height: 1.35; }
+  @media (max-width: 1024px) {
+    .modulex-randevu-kesif-plan-bas { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .modulex-randevu-kesif-plan { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-randevu-kesif-plan *, .modulex-randevu-kesif-plan *::before, .modulex-randevu-kesif-plan *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const P = "modulex-randevu-kesif-plan";
+    const az = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const randevu = (s, P) => {
+        const dl = document.documentElement.lang || undefined;
+        const iso = (t) => `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, "0")}-${String(t.getDate()).padStart(2, "0")}`;
+        const isoGun = (t) => ((t.getDay() + 6) % 7) + 1;
+        const coz = (v) => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ""); return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null; };
+        const bicim = (o) => { try { return new Intl.DateTimeFormat(dl, o); } catch (x) { return null; } };
+        const uzun = bicim({ weekday: "long", day: "numeric", month: "long", year: "numeric" });
+        const tarihYaz = (v) => { const t = coz(v); return t && uzun ? uzun.format(t) : v || ""; };
+        s.querySelectorAll("form[data-fb-randevu]").forEach((f) => {
+          const d = f.dataset;
+          s.classList.add(P + "--rjs");
+          const gunler = String(d.gunler || "1,2,3,4,5,6,7").split(",").map(Number);
+          const kapali = String(d.kapali || "").split(",").filter(Boolean);
+          const acikMi = (t) => gunler.includes(isoGun(t)) && !kapali.includes(iso(t));
+          const bugun = new Date();
+          bugun.setHours(0, 0, 0, 0);
+          const ilkGun = new Date(bugun);
+          ilkGun.setDate(ilkGun.getDate() + (Number(d.onGun) || 0));
+          const sonGun = new Date(bugun);
+          sonGun.setDate(sonGun.getDate() + (Number(d.azamiGun) || 60));
+          const durum = f.querySelector("[role=status]");
+          const yaz = (m, hata) => { if (durum) { durum.textContent = m || ""; durum.classList.toggle(P + "-durum--hata", !!hata); } };
+          const al = (ad) => { const e = f.elements.namedItem(ad); return e && "value" in e ? String(e.value).trim() : ""; };
+          let t0 = Date.now();
+          /* tarih: sınır + kapalı gün */
+          const tarih = f.querySelector("input[type=date]");
+          const kontrol = () => { if (!tarih) return; const t = coz(tarih.value); tarih.setCustomValidity(t && !acikMi(t) ? d.kapaliMesaj || "" : ""); };
+          if (tarih) {
+            tarih.min = iso(ilkGun);
+            tarih.max = iso(sonGun);
+            tarih.addEventListener("change", kontrol);
+            tarih.addEventListener("input", kontrol);
+          }
+          /* gün şeridi: açık günlerden N düğme (yerel dilde gün adı); varsa yerel tarih alanının yerine geçer */
+          const serit = f.querySelector("[data-gun-serit]");
+          if (serit && tarih) {
+            const adet = Number(serit.dataset.gunSerit) || 14;
+            const fa = bicim({ weekday: "short" });
+            const fg = bicim({ day: "numeric" });
+            const fy = bicim({ month: "short" });
+            const t = new Date(ilkGun);
+            let n = 0;
+            for (let g = 0; n < adet && t <= sonGun && g < 400; g++) {
+              if (acikMi(t)) {
+                const l = document.createElement("label");
+                l.className = P + "-gun";
+                const r = document.createElement("input");
+                r.type = "radio";
+                r.name = "date";
+                r.value = iso(t);
+                r.className = P + "-radyo";
+                r.dataset.tarih = "1";
+                r.dataset.etiket = tarih.dataset.etiket || "";
+                if (!n) r.required = true;
+                l.append(r);
+                [[fa, "gad"], [fg, "gno"], [fy, "gay"]].forEach(([b, k]) => { const sp = document.createElement("span"); sp.className = P + "-" + k; sp.textContent = b ? b.format(t) : iso(t); l.append(sp); });
+                serit.append(l);
+                n++;
+              }
+              t.setDate(t.getDate() + 1);
+            }
+            if (n) {
+              const kap = f.querySelector("[data-gun-kap]");
+              const yerel = f.querySelector("[data-tarih-alan]");
+              if (kap) kap.hidden = false;
+              if (yerel) yerel.hidden = true;
+              tarih.disabled = true;
+            }
+          }
+          /* kişi sayacı */
+          f.querySelectorAll("[data-arti], [data-eksi]").forEach((b) => b.addEventListener("click", () => {
+            const e = f.querySelector("#" + (b.dataset.arti || b.dataset.eksi));
+            if (!e) return;
+            if (b.dataset.arti) e.stepUp(); else e.stepDown();
+            e.dispatchEvent(new Event("input", { bubbles: true }));
+          }));
+          /* satırlar: alan etiketi (data-etiket) + okunur değer; seçimde seçenek yazısı, tarihte yerel uzun tarih */
+          const satirlar = () => {
+            const out = [];
+            const gor = new Set();
+            [...f.elements].forEach((e) => {
+              if (!e.name || e.disabled || gor.has(e.name) || ["website", "kvkk", "fb-kanal"].includes(e.name) || e.type === "submit" || e.type === "button") return;
+              let v = "";
+              if (e.type === "radio") {
+                const c = [...f.elements].find((x) => x.name === e.name && x.checked && !x.disabled);
+                if (!c) return;
+                v = c.dataset.tarih ? tarihYaz(c.value) : c.dataset.metin || c.value;
+              } else if (e.type === "checkbox") {
+                if (!e.checked) return;
+                v = e.dataset.metin || e.value;
+              } else if (e.tagName === "SELECT") {
+                if (!e.value) return;
+                v = e.options[e.selectedIndex].text.trim();
+              } else if (e.type === "date") v = tarihYaz(e.value);
+              else v = String(e.value).trim();
+              gor.add(e.name);
+              if (v) out.push({ ad: e.name, et: e.dataset.etiket || e.name, v });
+            });
+            return out;
+          };
+          /* canlı özet: [data-ozet] listeleri (form dışında da olabilir, modül içinde) */
+          const ozet = () => {
+            const L = satirlar().filter((x) => x.ad !== "message");
+            s.querySelectorAll("[data-ozet]").forEach((o) => {
+              o.replaceChildren(...L.map((x) => { const li = document.createElement("li"); const b = document.createElement("b"); b.textContent = x.et; const sp = document.createElement("span"); sp.textContent = x.v; li.append(b, sp); return li; }));
+            });
+            s.classList.toggle(P + "--ozetli", L.length > 0);
+          };
+          f.addEventListener("input", ozet);
+          f.addEventListener("change", ozet);
+          /* adım sihirbazı: [data-adim] alan grupları, [data-ileri] / [data-geri], [data-adim-isaret] göstergeleri, --adim (0…1) */
+          const adimlar = [...f.querySelectorAll("[data-adim]")];
+          const isaret = [...s.querySelectorAll("[data-adim-isaret]")];
+          let ai = 0;
+          const goster = (n, odak) => {
+            ai = n;
+            adimlar.forEach((a, j) => { a.hidden = j !== n; });
+            isaret.forEach((x, j) => { if (j === n) x.setAttribute("aria-current", "step"); else x.removeAttribute("aria-current"); x.classList.toggle(P + "--tamam", j < n); });
+            s.style.setProperty("--adim", String(adimlar.length > 1 ? n / (adimlar.length - 1) : 1));
+            f.querySelectorAll("[data-geri]").forEach((b) => { b.hidden = n === 0; });
+            f.querySelectorAll("[data-ileri]").forEach((b) => { b.hidden = n === adimlar.length - 1; });
+            f.querySelectorAll("[data-son]").forEach((b) => { b.hidden = n !== adimlar.length - 1; });
+            if (odak) { const g = adimlar[n].querySelector("input:not([type=hidden]):not(:disabled), select, textarea"); if (g) g.focus(); }
+          };
+          if (adimlar.length > 1) {
+            f.querySelectorAll("[data-ileri]").forEach((b) => b.addEventListener("click", () => {
+              const kotu = [...adimlar[ai].querySelectorAll("input, select, textarea")].find((e) => e.willValidate && !e.checkValidity());
+              if (kotu) { kotu.reportValidity(); return; }
+              if (ai < adimlar.length - 1) goster(ai + 1, true);
+            }));
+            f.querySelectorAll("[data-geri]").forEach((b) => b.addEventListener("click", () => { if (ai > 0) goster(ai - 1, true); }));
+            goster(0);
+          }
+          const ics = (metin) => {
+            const t = coz(al("date"));
+            if (!t) return;
+            const sa = /^(\d{1,2}):(\d{2})$/.exec(al("time"));
+            const sec = f.querySelector("select[name=service]");
+            const r = [...f.elements].find((x) => x.name === "service" && x.checked);
+            const dk = Number((r && r.dataset.sure) || (sec && sec.selectedIndex > 0 && sec.options[sec.selectedIndex].dataset.sure) || d.sure) || 30;
+            const z = (x) => `${iso(x).replace(/-/g, "")}T${String(x.getHours()).padStart(2, "0")}${String(x.getMinutes()).padStart(2, "0")}00`;
+            const kac = (x) => String(x).replace(/\\/g, "\\\\").replace(/[,;]/g, (m) => "\\" + m).replace(/\r?\n/g, "\\n");
+            let bas = `DTSTART;VALUE=DATE:${iso(t).replace(/-/g, "")}`;
+            let bit = "";
+            if (sa) {
+              t.setHours(+sa[1], +sa[2]);
+              bas = `DTSTART:${z(t)}`;
+              bit = `DTEND:${z(new Date(t.getTime() + dk * 60000))}`;
+            }
+            const satir = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//webmaker//randevu//", "BEGIN:VEVENT", `UID:${Date.now()}-${Math.random().toString(36).slice(2)}`,
+              `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "")}`, bas, bit, `SUMMARY:${kac(d.konu || document.title)}`, `DESCRIPTION:${kac(metin)}`,
+              d.yer ? `LOCATION:${kac(d.yer)}` : "", "END:VEVENT", "END:VCALENDAR"].filter(Boolean).join("\r\n");
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(new Blob([satir], { type: "text/calendar" }));
+            a.download = "randevu.ics";
+            document.body.append(a);
+            a.click();
+            a.remove();
+            setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+          };
+          f.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (!f.checkValidity()) {
+              const k = [...f.elements].find((x) => x.willValidate && !x.checkValidity());
+              if (k && adimlar.length > 1) { const j = adimlar.findIndex((a) => a.contains(k)); if (j > -1 && j !== ai) goster(j); }
+              f.reportValidity();
+              return;
+            }
+            if (al("website")) return;
+            const L = satirlar();
+            const metin = (d.konu ? [d.konu, ""] : []).concat(L.map((x) => `${x.et}: ${x.v}`)).join("\n");
+            const kanal = [...f.elements].find((x) => x.name === "fb-kanal" && x.checked);
+            const g = kanal ? kanal.value : d.gonderim;
+            const hizmet = (L.find((x) => x.ad === "service") || {}).v || "";
+            if (d.action) {
+              const b = f.querySelector("[type=submit]");
+              if (b) b.disabled = true;
+              const yuk = { name: al("name"), email: al("email"), phone: al("phone"), topic: hizmet, message: metin, date: al("date"), time: al("time"), guests: al("guests"),
+                kvkk: true, lang: document.documentElement.lang || "", page: location.pathname, website: al("website"), t: Date.now() - t0 };
+              fetch(d.action, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(yuk) })
+                .then((r) => r.json().catch(() => ({})).then((j) => r.ok && j && j.ok !== false))
+                .then((ok) => { if (b) b.disabled = false; yaz(ok ? d.ok : d.hata, !ok); if (ok) { f.reset(); t0 = Date.now(); ozet(); } })
+                .catch(() => { if (b) b.disabled = false; yaz(d.hata, true); });
+              return;
+            }
+            if (g === "whatsapp" && d.wa) window.open(`https://wa.me/${d.wa}?text=${encodeURIComponent(metin)}`, "_blank", "noopener");
+            else if (g === "ics") ics(metin);
+            else if (d.eposta) location.href = `mailto:${d.eposta}?subject=${encodeURIComponent(d.konu || "")}&body=${encodeURIComponent(metin.replace(/\n/g, "\r\n"))}`;
+            else if (d.wa) window.open(`https://wa.me/${d.wa}?text=${encodeURIComponent(metin)}`, "_blank", "noopener");
+            yaz(d.ok, false);
+          });
+          ozet();
+        });
+      };
+    const plan = (s, P) => {
+        const f = s.querySelector("form[data-fb-randevu]");
+        const K = f ? [...f.querySelectorAll("input[data-plan]")] : [];
+        if (!K.length) return;
+        const gizli = f.querySelector("input[data-plan-gizli]");
+        const say = s.querySelector("[data-plan-say]");
+        const liste = s.querySelector("[data-plan-liste]");
+        let nf;
+        try { nf = new Intl.NumberFormat(document.documentElement.lang || undefined); } catch (x) { nf = { format: (v) => String(v) }; }
+        K.forEach((x) => x.removeAttribute("name"));
+        if (gizli) gizli.name = "service";
+        const guncel = () => {
+          const S = K.filter((x) => x.checked);
+          if (gizli) gizli.value = S.map((x) => x.dataset.metin || x.value).join(" + ");
+          if (say) say.textContent = nf.format(S.length);
+          if (liste) liste.replaceChildren(...S.map((x) => { const li = document.createElement("li"); li.textContent = x.dataset.metin || x.value; return li; }));
+          K[0].setCustomValidity(S.length ? "" : K[0].dataset.bos || " ");
+          s.classList.toggle(P + "--secili", S.length > 0);
+        };
+        K.forEach((x) => x.addEventListener("change", guncel));
+        f.addEventListener("reset", () => setTimeout(guncel));
+        s.classList.add(P + "--pjs");
+        guncel();
+      };
+    document.querySelectorAll("." + P).forEach((s) => {
+      if (s.dataset.fbHazir) return;
+      s.dataset.fbHazir = "1";
+      randevu(s, P, az);
+      plan(s, P, az);
+    });
+  })();
+</script>

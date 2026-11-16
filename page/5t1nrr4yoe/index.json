@@ -1,0 +1,39 @@
+{
+  "id": "5t1nrr4yoe",
+  "name": {
+    "tr": "Keşif",
+    "en": "Site visit",
+    "ar": "الزيارة"
+  },
+  "description": {
+    "tr": "Kat planından iş seçerek saha keşfi talebi (demo).",
+    "en": "Site-visit request by picking jobs on a floor plan (demo).",
+    "ar": "طلب زيارة ميدانية باختيار الأعمال من المخطط (تجريبي)."
+  },
+  "keyword": {
+    "tr": "saha keşfi, titreşim ölçümü, revizyon",
+    "en": "site visit, vibration check, overhaul",
+    "ar": "زيارة ميدانية، قياس الاهتزاز، صيانة"
+  },
+  "path": "teklif-al",
+  "icon": "engineering",
+  "category": "",
+  "status": "play",
+  "desing": {
+    "header": [],
+    "body": [
+      "4gzxbr"
+    ],
+    "footer": []
+  },
+  "index": 2,
+  "url": "",
+  "text": {},
+  "title": {
+    "tr": "Keşif",
+    "en": "Site visit",
+    "ar": "الزيارة"
+  },
+  "date": "2026-11-16T20:22:06.529Z",
+  "update": "2026-11-16T20:24:51.174Z"
+}

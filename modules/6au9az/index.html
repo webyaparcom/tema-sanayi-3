@@ -1,0 +1,123 @@
+<section class="modulex-sss-tumu-ac{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-sss-tumu-ac-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* sss-tumu-ac — Ailedeki akordeonların hepsi tek tek açılır (çoğu tek açık); bu modül teknik/yoğun SSS'ler için toplu kontrol sunar — tümünü aç/kapat, soru dilimleriyle atlama ve açık soru sayacı olan yapışkan araç çubuğu + numara sütunlu çizelge akordeon. */
+  .modulex-sss-tumu-ac { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-sss-tumu-ac *, .modulex-sss-tumu-ac *::before, .modulex-sss-tumu-ac *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-sss-tumu-ac :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-sss-tumu-ac :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-sss-tumu-ac :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-sss-tumu-ac :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-sss-tumu-ac img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-sss-tumu-ac) img { height: auto; }
+  .modulex-sss-tumu-ac [hidden] { display: none !important; }
+  .modulex-sss-tumu-ac :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-sss-tumu-ac :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-sss-tumu-ac-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-sss-tumu-ac-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-sss-tumu-ac--bassiz .modulex-sss-tumu-ac-bas { display: none; }
+  .modulex-sss-tumu-ac-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-sss-tumu-ac-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-sss-tumu-ac-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-sss-tumu-ac-bas { max-width: 760px; }
+  .modulex-sss-tumu-ac-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-sss-tumu-ac-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-sss-tumu-ac-dugme:hover { transform: translateY(-2px); }
+  .modulex-sss-tumu-ac-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-sss-tumu-ac-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-sss-tumu-ac-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-sss-tumu-ac-arac { position: sticky; inset-block-start: 76px; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-block-end: 18px; padding: 12px 14px; border: 1px solid --cizgi--; border-radius: 14px; background-color: --bg--; box-shadow: 0 16px 28px -26px rgba(0, 0, 0, 0.55); }
+  .modulex-sss-tumu-ac-hepsi { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding-block: 8px; padding-inline: 12px 18px; border: 2px solid --text--; border-radius: 10px; background-color: transparent; color: --text--; font: inherit; font-weight: 800; transition: background-color 0.2s ease, color 0.2s ease; }
+  .modulex-sss-tumu-ac-hepsi:hover { background-color: --kartBg--; }
+  .modulex-sss-tumu-ac-hepsi[aria-pressed="true"] { background-color: --text--; color: --bg--; }
+  .modulex-sss-tumu-ac-hkapa, .modulex-sss-tumu-ac-hepsi[aria-pressed="true"] .modulex-sss-tumu-ac-hac { display: none; }
+  .modulex-sss-tumu-ac-hepsi[aria-pressed="true"] .modulex-sss-tumu-ac-hkapa { display: inline-block; }
+  .modulex-sss-tumu-ac-dilimler { display: flex; flex: 1 1 240px; gap: 4px; }
+  .modulex-sss-tumu-ac-dilim { flex: 1 1 0; min-width: 30px; height: 36px; padding: 0; border: 0; border-radius: 6px; background-color: --kartBg--; color: --text--; font: inherit; font-size: 0.78rem; font-weight: 800; font-variant-numeric: tabular-nums; transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease; }
+  .modulex-sss-tumu-ac-dilim:hover { transform: translateY(-2px); }
+  .modulex-sss-tumu-ac-dilim[aria-pressed="true"] { background-color: --vurguBg--; color: --vurguText--; }
+  .modulex-sss-tumu-ac-olcer { color: --muted--; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .modulex-sss-tumu-ac-olcer output { color: --text--; font-size: 1.15rem; font-weight: 900; }
+  .modulex-sss-tumu-ac-kalemler { display: grid; overflow: hidden; border: 1px solid --cizgi--; border-radius: --yuvarlak--; }
+  .modulex-sss-tumu-ac-kalem { background-color: --bg--; scroll-margin-block-start: 170px; transition: background-color 0.25s ease; }
+  .modulex-sss-tumu-ac-kalem + .modulex-sss-tumu-ac-kalem { border-block-start: 1px solid --cizgi--; }
+  .modulex-sss-tumu-ac-kalem[open] { background-color: --kartBg--; }
+  .modulex-sss-tumu-ac-kozet { display: grid; grid-template-columns: 58px minmax(0, 1fr) 24px; align-items: center; gap: 14px; padding-block: 16px; padding-inline: 0 20px; list-style: none; font-weight: 700; line-height: 1.4; }
+  .modulex-sss-tumu-ac-kozet::-webkit-details-marker { display: none; }
+  .modulex-sss-tumu-ac-kozet:focus-visible { outline-offset: -3px; }
+  .modulex-sss-tumu-ac-kozet:hover .modulex-sss-tumu-ac-kyazi { color: --accentInk--; }
+  .modulex-sss-tumu-ac-ksira { align-self: stretch; display: grid; place-items: center; border-inline-end: 1px solid --cizgi--; color: --accentInk--; font-size: 0.85rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .modulex-sss-tumu-ac-kyazi { transition: color 0.2s ease; }
+  .modulex-sss-tumu-ac-kdurum { position: relative; width: 22px; height: 22px; border: 2px solid --accentInk--; border-radius: 6px; }
+  .modulex-sss-tumu-ac-kdurum::after { content: ""; position: absolute; inset: 3px; border-radius: 2px; background-color: --accent--; transform: scale(0); transition: transform 0.25s ease; }
+  .modulex-sss-tumu-ac-kalem[open] .modulex-sss-tumu-ac-kdurum::after { transform: scale(1); }
+  .modulex-sss-tumu-ac-kyanit { display: grid; gap: 8px; padding-block: 0 20px; padding-inline: 72px 20px; animation: modulex-sss-tumu-ac-taac 0.3s ease both; }
+  .modulex-sss-tumu-ac-cevap { color: --muted--; line-height: 1.75; }
+  @keyframes modulex-sss-tumu-ac-taac { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+  @media (max-width: 768px) {
+    .modulex-sss-tumu-ac-arac { inset-block-start: 60px; gap: 10px; padding: 10px; }
+    .modulex-sss-tumu-ac-dilimler { order: 3; flex-basis: 100%; flex-wrap: wrap; }
+    .modulex-sss-tumu-ac-kozet { grid-template-columns: 44px minmax(0, 1fr) 22px; gap: 10px; padding-inline-end: 14px; }
+    .modulex-sss-tumu-ac-kyanit { padding-inline: 16px; }
+  }
+  .modulex-sss-tumu-ac-bag { display: inline-flex; align-items: center; gap: 6px; margin-block-start: 10px; color: --accentInk--; font-weight: 700; text-decoration: none; transition: gap 0.25s ease; }
+  .modulex-sss-tumu-ac-bag:hover { gap: 10px; text-decoration: underline; text-underline-offset: 4px; }
+  .modulex-sss-tumu-ac-bag .material-symbols-outlined { font-size: 18px; }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-sss-tumu-ac :is(.modulex-sss-tumu-ac-baslik, .modulex-sss-tumu-ac-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-sss-tumu-ac-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-sss-tumu-ac { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-sss-tumu-ac *, .modulex-sss-tumu-ac *::before, .modulex-sss-tumu-ac *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const P = "modulex-sss-tumu-ac";
+    const az = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const tumuAc = (s, P, az) => {
+        const d = [...s.querySelectorAll("details[data-ta]")];
+        const t = s.querySelector("[data-ta-hepsi]");
+        if (!d.length || !t) return;
+        s.classList.add(P + "--tajs");
+        const arac = s.querySelector("[data-ta-arac]");
+        if (arac) arac.hidden = false;
+        const say = s.querySelector("[data-ta-say]");
+        const sg = [...s.querySelectorAll("[data-ta-git]")];
+        let nf = null;
+        try { nf = new Intl.NumberFormat(document.documentElement.lang || undefined); } catch (e) { nf = null; }
+        const durum = () => {
+          const n = d.filter((x) => x.open).length;
+          if (say) say.textContent = nf ? nf.format(n) : String(n);
+          t.setAttribute("aria-pressed", String(n === d.length));
+          sg.forEach((b) => { const x = d[Number(b.dataset.taGit)]; if (x) b.setAttribute("aria-pressed", String(x.open)); });
+        };
+        d.forEach((x) => x.addEventListener("toggle", durum));
+        t.addEventListener("click", () => { const ac = d.some((x) => !x.open); d.forEach((x) => { x.open = ac; }); durum(); });
+        sg.forEach((b) => b.addEventListener("click", () => {
+          const x = d[Number(b.dataset.taGit)];
+          if (!x) return;
+          x.open = !x.open;
+          if (x.open) x.scrollIntoView({ behavior: az ? "auto" : "smooth", block: "nearest" });
+          durum();
+        }));
+        durum();
+      };
+    document.querySelectorAll("." + P).forEach((s) => {
+      if (s.dataset.fbHazir) return;
+      s.dataset.fbHazir = "1";
+      tumuAc(s, P, az);
+    });
+  })();
+</script>

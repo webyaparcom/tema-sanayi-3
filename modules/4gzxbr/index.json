@@ -1,0 +1,53 @@
+{
+  "name": "Randevu Keşif Planı — kat planından alan seç, keşif günü iste",
+  "description": "Solda kareli pafta üstünde kalın duvarlı kat planı: her hizmet/alan farklı büyüklükte bir oda karosu (kapı yayı çizgisi, ikon, ad, süre · fiyat); birden çok oda işaretlenir, seçili oda taralı dolgu ve onay rozeti alır, üstte pusula, ölçek çizgisi ve seçili oda sayacı, altta seçili oda çipleri. Sağda keşif formu: yaklaşık alan (m²), adres, tarih, gün dilimi çipleri (sabah · öğleden sonra · akşam), uzman, ad, telefon, e-posta, not, KVKK ve gönder. Seçilen odalar talebe tek «hizmet» satırıyla gider. JS yokken her oda ayrı satır. randevu-hizmet-sepeti çoklu seçimi kart ızgarası + fiyat toplamıyla yapar; bu modül seçimi bir mekân metaforunda (farklı boyutlu oda karolarından oluşan kat planı) yaptırır, saat yerine gün dilimi ve adres/m² ister (plan parçası) — yerinde keşif/ölçü randevusuna özgü iskelet. Sunucusuz gönderim (formAction JSON POST › WhatsApp › .ics › mailto), kapalı gün denetimi, KVKK onayı. Metinler dil sözlüğü, renkler desing + var(--mx-site-*), mantıksal CSS → RTL. Gönderim yolu yoksa blok basılmaz.",
+  "version": "1.0.0",
+  "icon": "floor",
+  "category": "randevu",
+  "subCategory": "floor-plan",
+  "tags": [
+    "randevu",
+    "floor-plan",
+    "multi-select",
+    "site-visit",
+    "survey",
+    "rtl",
+    "fabrika"
+  ],
+  "desing": {
+    "max": "1200px",
+    "bosluk": "clamp(56px, 8vw, 104px)",
+    "yuvarlak": "18px",
+    "ust": "",
+    "baslik": "",
+    "metin": "",
+    "bg": "var(--mx-site-surface, #f6f7f9)",
+    "text": "var(--mx-site-text, #111318)",
+    "muted": "color-mix(in srgb, var(--mx-site-text, #111318) 70%, var(--mx-site-surface, #f6f7f9))",
+    "kartBg": "var(--mx-site-bg, #ffffff)",
+    "cizgi": "color-mix(in srgb, var(--mx-site-text, #111318) 12%, transparent)",
+    "accent": "var(--mx-site-primary, #2563eb)",
+    "accentInk": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 70%, var(--mx-site-text, #111318))",
+    "accentText": "var(--mx-site-primary-contrast, #ffffff)",
+    "vurguBg": "var(--mx-site-primary, #2563eb)",
+    "vurguText": "var(--mx-site-primary-contrast, #ffffff)",
+    "alanAd": "",
+    "planBos": "",
+    "bgcolor": "var(--mx-site-surface, #f6f7f9)",
+    "color": "var(--mx-site-text, #111318)"
+  },
+  "data": [],
+  "veri": {
+    "statik": true,
+    "dinamik": false,
+    "kaynak": "desing",
+    "alanlar": {
+      "ad": "hizmet adı (dil sözlüğü, zorunlu) — eski `services[].name`",
+      "sure": "dakika — eski `duration`",
+      "fiyat": "sayı (sayfa diliyle biçimlenir) — eski `price`",
+      "ikon": "Material Symbols adı",
+      "metin": "kısa açıklama (dil sözlüğü)",
+      "img": "görsel (destekleyen yerleşimde)"
+    }
+  }
+}

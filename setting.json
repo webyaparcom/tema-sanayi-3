@@ -1,0 +1,54 @@
+{
+  "order": false,
+  "user": false,
+  "description": {
+    "tr": "Eksen Redüktör: Bursa’da helisel, konik-helisel, planet ve servo redüktör üretimi; her redüktör yük altında denenir. Eksen Defteri’nde ürün kuşakları, test standı ve saha keşfi. Demo site; rakamlar kurgusaldır.",
+    "en": "Eksen Reducer: helical, bevel-helical, planetary and servo gearboxes made in Bursa; every unit is tested under load. The Eksen Notebook covers product generations, the test bench and site visits. Demo site; figures are fictional.",
+    "ar": "إكسن للمخفّضات: تصنيع علب تروس حلزونية ومخروطية حلزونية وكوكبية ومؤازرة في بورصة؛ ويُختبر كل مخفّض تحت الحمل. يعرض دفتر إكسن أجيال المنتجات ومنصة الاختبار والزيارات الميدانية. موقع تجريبي؛ الأرقام افتراضية."
+  },
+  "keyword": {
+    "tr": "redüktör, dişli kutusu, helisel redüktör, planet redüktör, servo redüktör, redüktör revizyonu, bursa",
+    "en": "gearbox, gear reducer, helical gearbox, planetary gearbox, servo gearbox, gearbox overhaul, bursa",
+    "ar": "علبة تروس، مخفّض سرعة، مخفّض حلزوني، مخفّض كوكبي، مخفّض مؤازر، صيانة علب التروس، بورصة"
+  },
+  "category": "Kurumsal",
+  "name": "Eksen Redüktör",
+  "domain": "sanayi-3.webyapar.com",
+  "langs": {
+    "tr": true,
+    "en": true,
+    "ar": true,
+    "de": false,
+    "ru": false,
+    "es": false,
+    "fr": false,
+    "it": false,
+    "ja": false,
+    "zh": false,
+    "ko": false,
+    "pt": false
+  },
+  "logo": "logo.png",
+  "multi": false,
+  "publishMode": "static",
+  "font": {
+    "body": "noto-sans",
+    "heading": "dm-serif-display",
+    "ar": {
+      "body": "ibm-plex-sans-arabic",
+      "heading": "noto-naskh-arabic"
+    }
+  },
+  "colorScheme": "auto",
+  "theme_color": "#E3B505",
+  "seo": {
+    "noindex": true
+  },
+  "cssTokens": {
+    "--mx-radius-sm": "1px",
+    "--mx-radius-md": "2px",
+    "--mx-radius-lg": "3px",
+    "--mx-radius-xl": "4px"
+  },
+  "icon": "icon.png"
+}

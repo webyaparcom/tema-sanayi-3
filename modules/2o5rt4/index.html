@@ -1,0 +1,167 @@
+<header class="modulex-ust-dikey-ray{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-ust-dikey-ray-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</header>
+
+<style>
+  /* ust-dikey-ray — Menü yatay değil, ekran kenarına çakılı dikey bir ray: yönetim paneli/uygulama dili — sayfa ne kadar kayarsa kaysın gezinme ve iletişim hep yerinde. */
+  .modulex-ust-dikey-ray { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-ust-dikey-ray *, .modulex-ust-dikey-ray *::before, .modulex-ust-dikey-ray *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-ust-dikey-ray :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-ust-dikey-ray :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-ust-dikey-ray :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-ust-dikey-ray :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-ust-dikey-ray img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-ust-dikey-ray) img { height: auto; }
+  .modulex-ust-dikey-ray [hidden] { display: none !important; }
+  .modulex-ust-dikey-ray :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-ust-dikey-ray :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-ust-dikey-ray-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-ust-dikey-ray-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-ust-dikey-ray--bassiz .modulex-ust-dikey-ray-bas { display: none; }
+  .modulex-ust-dikey-ray-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-ust-dikey-ray-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-ust-dikey-ray-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-ust-dikey-ray-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-ust-dikey-ray-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-ust-dikey-ray-dugme:hover { transform: translateY(-2px); }
+  .modulex-ust-dikey-ray-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-ust-dikey-ray-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-ust-dikey-ray-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-ust-dikey-ray { position: relative; z-index: 900; }
+  .modulex-ust-dikey-ray-logo { display: inline-flex; flex: 0 1 auto; min-width: 0; align-items: center; color: inherit; text-decoration: none; }
+  /* dar ekranda geniş logo/uzun ad çubuğu taşırmasın: logo daralır (img max-width 100%), ad sarar */
+  .modulex-ust-dikey-ray-logo img { width: auto; max-height: --logoH--; }
+  .modulex-ust-dikey-ray-ad { font-family: var(--mx-font-heading, inherit); font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+  .modulex-ust-dikey-ray-oge { position: relative; display: inline-flex; align-items: center; min-height: 44px; color: inherit; font-weight: 600; text-decoration: none; transition: color 0.2s ease, background 0.2s ease; }
+  .modulex-ust-dikey-ray-oge:hover, .modulex-ust-dikey-ray-oge[aria-current="page"] { color: --accentInk--; }
+  .modulex-ust-dikey-ray-cta { display: inline-flex; flex: none; align-items: center; gap: 6px; min-height: 44px; padding: 8px 18px; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; white-space: nowrap; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .modulex-ust-dikey-ray-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -12px --accent--; }
+  .modulex-ust-dikey-ray-cta .material-symbols-outlined, .modulex-ust-dikey-ray-tel .material-symbols-outlined, .modulex-ust-dikey-ray-posta .material-symbols-outlined { font-size: 18px; }
+  .modulex-ust-dikey-ray-tel, .modulex-ust-dikey-ray-posta { display: inline-flex; align-items: center; gap: 6px; color: inherit; text-decoration: none; white-space: nowrap; }
+  .modulex-ust-dikey-ray-tel:hover, .modulex-ust-dikey-ray-posta:hover { color: --accentInk--; }
+  .modulex-ust-dikey-ray-dil:empty { display: none; }
+  .modulex-ust-dikey-ray-ac { display: none; align-items: center; gap: 10px; min-width: 46px; min-height: 46px; padding: 0 12px; border: 1px solid --cizgi--; border-radius: 999px; background: transparent; color: inherit; font: inherit; font-weight: 700; }
+  .modulex-ust-dikey-ray-ac-ikon { display: grid; gap: 4px; width: 20px; }
+  .modulex-ust-dikey-ray-ac-ikon span { display: block; height: 2px; border-radius: 2px; background: currentColor; transition: transform 0.3s ease, opacity 0.3s ease; }
+  .modulex-ust-dikey-ray--acik .modulex-ust-dikey-ray-ac-ikon span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .modulex-ust-dikey-ray--acik .modulex-ust-dikey-ray-ac-ikon span:nth-child(2) { opacity: 0; }
+  .modulex-ust-dikey-ray--acik .modulex-ust-dikey-ray-ac-ikon span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .modulex-ust-dikey-ray-kapat { display: inline-grid; place-items: center; width: 46px; height: 46px; border: 1px solid --cizgi--; border-radius: 50%; background: transparent; color: inherit; }
+  .modulex-ust-dikey-ray-perde { position: fixed; inset: 0; z-index: 1; background: color-mix(in srgb, --text-- 45%, transparent); animation: modulex-ust-dikey-ray-sol 0.3s ease both; }
+  @keyframes modulex-ust-dikey-ray-sol { from { opacity: 0; } to { opacity: 1; } }
+
+  .modulex-ust-dikey-ray-panel { display: grid; gap: 14px; }
+  @media (max-width: 1024px) {
+    .modulex-ust-dikey-ray--js .modulex-ust-dikey-ray-nav, .modulex-ust-dikey-ray--js .modulex-ust-dikey-ray-genis { display: none; }
+    .modulex-ust-dikey-ray--js .modulex-ust-dikey-ray-ac { display: inline-flex; }
+    .modulex-ust-dikey-ray-panel { position: absolute; inset-inline: 0; inset-block-start: 100%; padding: 16px 20px 24px; border-block-end: 1px solid --cizgi--; background: --bg--; box-shadow: 0 24px 40px -28px color-mix(in srgb, --text-- 55%, transparent); animation: modulex-ust-dikey-ray-in 0.3s ease both; }
+    .modulex-ust-dikey-ray-pliste { display: grid; }
+    .modulex-ust-dikey-ray-pliste .modulex-ust-dikey-ray-oge { width: 100%; min-height: 50px; border-block-end: 1px solid --cizgi--; font-size: 1.05rem; }
+    .modulex-ust-dikey-ray-palt { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+  }
+  @media (min-width: 1025px) {
+    .modulex-ust-dikey-ray-panel { display: none !important; }
+  }
+  @keyframes modulex-ust-dikey-ray-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+  .modulex-ust-dikey-ray-ray { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; padding-block: 12px; }
+  .modulex-ust-dikey-ray-raybas { display: flex; flex: 1 1 auto; align-items: center; justify-content: space-between; gap: 12px; min-width: 0; }
+  .modulex-ust-dikey-ray-rliste { display: grid; gap: 3px; }
+  .modulex-ust-dikey-ray-roge { position: relative; display: flex; align-items: center; min-height: 46px; padding-inline: 18px 12px; border-radius: 12px; color: inherit; font-weight: 600; text-decoration: none; transition: background-color 0.25s ease, color 0.25s ease, padding 0.25s ease; }
+  .modulex-ust-dikey-ray-roge::before { content: ""; position: absolute; inset-inline-start: 0; inset-block: 10px; width: 3px; border-radius: 3px; background-color: --accent--; transform: scaleY(0); transition: transform 0.3s ease; }
+  .modulex-ust-dikey-ray-roge:hover { padding-inline-start: 24px; background-color: color-mix(in srgb, --text-- 6%, transparent); }
+  .modulex-ust-dikey-ray-roge:hover::before, .modulex-ust-dikey-ray-roge[aria-current="page"]::before { transform: none; }
+  .modulex-ust-dikey-ray-roge[aria-current="page"] { background-color: --kartBg--; color: --accentInk--; box-shadow: 0 8px 18px -14px color-mix(in srgb, --text-- 55%, transparent); }
+  .modulex-ust-dikey-ray-genis { display: grid; justify-items: start; gap: 10px; font-size: 0.92rem; }
+  .modulex-ust-dikey-ray-genis .modulex-ust-dikey-ray-cta { justify-self: stretch; justify-content: center; }
+  @keyframes modulex-ust-dikey-ray-raygel { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+  @media (min-width: 1025px) {
+    .modulex-ust-dikey-ray.modulex-ust-dikey-ray { position: fixed; inset-block: 0; inset-inline-start: 0; z-index: 950; width: 272px; padding: 0; overflow-y: auto; overscroll-behavior: contain; border-inline-end: 1px solid --cizgi--; box-shadow: 18px 0 40px -36px color-mix(in srgb, --text-- 60%, transparent); }
+    [dir="rtl"] .modulex-ust-dikey-ray.modulex-ust-dikey-ray { box-shadow: -18px 0 40px -36px color-mix(in srgb, --text-- 60%, transparent); }
+    .modulex-ust-dikey-ray-ic { height: 100%; }
+    .modulex-ust-dikey-ray-ray { flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 26px; min-height: 100%; padding: 28px 18px 24px; animation: modulex-ust-dikey-ray-raygel 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+    .modulex-ust-dikey-ray-raybas { flex: none; }
+    .modulex-ust-dikey-ray-ray > .modulex-ust-dikey-ray-nav { flex: 1 1 auto; }
+    .modulex-ust-dikey-ray-genis { padding-block-start: 18px; border-block-start: 1px solid --cizgi--; }
+    /* site CSS'i body'ye width: 100% verir → dolgu kutunun içinde kalsın (yoksa ray genişliği kadar yatay taşma) */
+    body:has(.modulex-ust-dikey-ray) { box-sizing: border-box; padding-inline-start: 272px; }
+  }
+  @media (max-width: 1024px) {
+    .modulex-ust-dikey-ray-ray { border-block-end: 1px solid --cizgi--; }
+    .modulex-ust-dikey-ray:not(.modulex-ust-dikey-ray--js) .modulex-ust-dikey-ray-ray { flex-wrap: wrap; }
+    .modulex-ust-dikey-ray:not(.modulex-ust-dikey-ray--js) .modulex-ust-dikey-ray-rliste { display: flex; flex-wrap: wrap; gap: 4px; }
+    .modulex-ust-dikey-ray:not(.modulex-ust-dikey-ray--js) .modulex-ust-dikey-ray-ray > .modulex-ust-dikey-ray-nav { order: 3; flex-basis: 100%; }
+  }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-ust-dikey-ray :is(.modulex-ust-dikey-ray-baslik, .modulex-ust-dikey-ray-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-ust-dikey-ray-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-ust-dikey-ray { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-ust-dikey-ray *, .modulex-ust-dikey-ray *::before, .modulex-ust-dikey-ray *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const P = "modulex-ust-dikey-ray";
+    const az = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const cekmece = (s, P) => {
+          const ac = s.querySelector("." + P + "-ac");
+          const panel = ac ? document.getElementById(ac.getAttribute("aria-controls")) : null;
+          if (!ac || !panel) return;
+          s.classList.add(P + "--js");
+          const perde = s.querySelector("." + P + "-perde");
+          const modal = panel.getAttribute("aria-modal") === "true";
+          const kok = document.documentElement;
+          const kapa = (odak) => {
+            if (panel.hidden) return;
+            panel.hidden = true;
+            if (perde) perde.hidden = true;
+            ac.setAttribute("aria-expanded", "false");
+            s.classList.remove(P + "--acik");
+            if (modal) kok.style.overflow = "";
+            if (odak) ac.focus();
+          };
+          const aci = () => {
+            panel.hidden = false;
+            if (perde) perde.hidden = false;
+            ac.setAttribute("aria-expanded", "true");
+            s.classList.add(P + "--acik");
+            if (modal) kok.style.overflow = "hidden";
+            const ilk = panel.querySelector("a[href], button");
+            if (ilk) ilk.focus();
+          };
+          ac.addEventListener("click", () => (panel.hidden ? aci() : kapa(true)));
+          panel.addEventListener("click", (e) => {
+            if (e.target.closest("." + P + "-kapat")) kapa(true);
+            else if (e.target.closest("a[href]")) kapa(false);
+          });
+          if (perde) perde.addEventListener("click", () => kapa(true));
+          document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !panel.hidden) kapa(true); });
+          if (modal) {
+            panel.addEventListener("keydown", (e) => {
+              if (e.key !== "Tab") return;
+              const o = [...panel.querySelectorAll("a[href], button:not([disabled])")].filter((x) => x.offsetParent !== null);
+              if (!o.length) return;
+              if (e.shiftKey && document.activeElement === o[0]) { e.preventDefault(); o[o.length - 1].focus(); }
+              else if (!e.shiftKey && document.activeElement === o[o.length - 1]) { e.preventDefault(); o[0].focus(); }
+            });
+          }
+          const g = Number(ac.dataset.genis);
+          if (g && window.matchMedia) window.matchMedia(`(min-width: ${g}px)`).addEventListener("change", (m) => { if (m.matches) kapa(false); });
+        };
+    document.querySelectorAll("." + P).forEach((s) => {
+      if (s.dataset.fbHazir) return;
+      s.dataset.fbHazir = "1";
+      cekmece(s, P, az);
+    });
+  })();
+</script>

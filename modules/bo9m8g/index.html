@@ -1,0 +1,90 @@
+<section class="modulex-acilis-katman-patlama{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-acilis-katman-patlama-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* acilis-katman-patlama — acilis-kart-yigini düz kartları kaydırarak üst üste koyar, acilis-izgara-cizgi dik ızgaradır; bu modül maddeleri 3B izometrik katman plakalarına çevirir (ambalaj/ürün katmanları gibi), plakalar ile etiketler kılavuz çizgisiyle bağlanır ve fareyle aralanır. */
+  .modulex-acilis-katman-patlama { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-acilis-katman-patlama *, .modulex-acilis-katman-patlama *::before, .modulex-acilis-katman-patlama *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-acilis-katman-patlama :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-acilis-katman-patlama :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-acilis-katman-patlama :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-acilis-katman-patlama :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-acilis-katman-patlama img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-acilis-katman-patlama) img { height: auto; }
+  .modulex-acilis-katman-patlama [hidden] { display: none !important; }
+  .modulex-acilis-katman-patlama :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-acilis-katman-patlama :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-acilis-katman-patlama-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-acilis-katman-patlama-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-acilis-katman-patlama--bassiz .modulex-acilis-katman-patlama-bas { display: none; }
+  .modulex-acilis-katman-patlama-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-acilis-katman-patlama-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-acilis-katman-patlama-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-acilis-katman-patlama-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-acilis-katman-patlama-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-acilis-katman-patlama-dugme:hover { transform: translateY(-2px); }
+  .modulex-acilis-katman-patlama-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-acilis-katman-patlama-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-acilis-katman-patlama-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-acilis-katman-patlama-duzen { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+  .modulex-acilis-katman-patlama-duzen--tek { grid-template-columns: minmax(0, 1fr); max-width: 820px; }
+  .modulex-acilis-katman-patlama-yazi { display: grid; gap: 20px; justify-items: start; min-width: 0; }
+  .modulex-acilis-katman-patlama-etiket { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-inline-start: 4px solid --accent--; background-color: --kartBg--; }
+  .modulex-acilis-katman-patlama-etiket .modulex-acilis-katman-patlama-rikon { color: --accentInk--; font-size: 22px; }
+  .modulex-acilis-katman-patlama-etiket .modulex-acilis-katman-patlama-rdeger { font-weight: 800; }
+  .modulex-acilis-katman-patlama-etiket .modulex-acilis-katman-patlama-rmetin { color: --muted--; font-size: 0.9rem; }
+  .modulex-acilis-katman-patlama-yigin { display: grid; min-width: 0; padding-block: clamp(30px, 5vw, 60px); }
+  .modulex-acilis-katman-patlama-kat { position: relative; z-index: calc(var(--n) - var(--i)); display: grid; grid-template-columns: clamp(150px, 17vw, 220px) minmax(0, 1fr); align-items: center; gap: 12px; margin-block-start: calc(clamp(150px, 17vw, 220px) * -0.62); transition: margin 0.55s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .modulex-acilis-katman-patlama-kat:first-child { margin-block-start: 0; }
+  .modulex-acilis-katman-patlama-yigin:hover .modulex-acilis-katman-patlama-kat:not(:first-child) { margin-block-start: calc(clamp(150px, 17vw, 220px) * -0.4); }
+  .modulex-acilis-katman-patlama-plaka { display: grid; place-items: center; inline-size: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 18px; background: linear-gradient(135deg, color-mix(in srgb, --accent-- calc(78% - var(--i) * 14%), --bg--), color-mix(in srgb, --accent-- calc(52% - var(--i) * 10%), --bg--)); box-shadow: 0 0 0 1px color-mix(in srgb, --text-- 14%, transparent), 10px 10px 0 -2px color-mix(in srgb, --accent-- 40%, --text--), 26px 30px 40px -12px color-mix(in srgb, --text-- 40%, transparent); transform: rotateX(58deg) rotateZ(-45deg) scale(0.78); animation: modulex-acilis-katman-patlama-dus 0.8s calc(0.2s + (var(--n) - var(--i)) * 0.12s) cubic-bezier(0.2, 0.7, 0.2, 1) both; transition: box-shadow 0.4s ease; }
+  @keyframes modulex-acilis-katman-patlama-dus { from { transform: rotateX(58deg) rotateZ(-45deg) scale(0.78) translate(-40px, -40px); opacity: 0; } }
+  .modulex-acilis-katman-patlama-kat:hover .modulex-acilis-katman-patlama-plaka { box-shadow: 0 0 0 2px --accent--, 10px 10px 0 -2px color-mix(in srgb, --accent-- 40%, --text--), 26px 30px 40px -12px color-mix(in srgb, --text-- 40%, transparent); }
+  .modulex-acilis-katman-patlama-doku { inline-size: 100%; block-size: 100%; object-fit: cover; }
+  .modulex-acilis-katman-patlama-pikon { color: color-mix(in srgb, --accent-- 30%, --text--); font-size: 44px; transform: rotate(45deg); }
+  .modulex-acilis-katman-patlama-ketiket { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .modulex-acilis-katman-patlama-ketiket::before { content: ""; flex: none; inline-size: clamp(18px, 4vw, 48px); border-block-start: 1.5px dashed color-mix(in srgb, --text-- 40%, transparent); }
+  .modulex-acilis-katman-patlama-kikon { display: inline-grid; flex: none; place-items: center; inline-size: 36px; block-size: 36px; border-radius: 10px; background-color: --kartBg--; color: --accentInk--; font-size: 20px; }
+  .modulex-acilis-katman-patlama-kyazi { display: grid; min-width: 0; }
+  .modulex-acilis-katman-patlama-kdeger { font-size: 1.3rem; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .modulex-acilis-katman-patlama-kmetin { color: --muted--; font-size: 0.9rem; line-height: 1.3; }
+  @media (max-width: 1024px) {
+    .modulex-acilis-katman-patlama-duzen { grid-template-columns: minmax(0, 1fr); }
+    .modulex-acilis-katman-patlama-yigin { max-width: 560px; }
+  }
+  @media (max-width: 768px) {
+    .modulex-acilis-katman-patlama-yigin { padding-block: 16px; }
+    .modulex-acilis-katman-patlama-kat { grid-template-columns: 124px minmax(0, 1fr); margin-block-start: -78px; }
+    .modulex-acilis-katman-patlama-yigin:hover .modulex-acilis-katman-patlama-kat:not(:first-child) { margin-block-start: -60px; }
+    .modulex-acilis-katman-patlama-pikon { font-size: 32px; }
+    .modulex-acilis-katman-patlama-kdeger { font-size: 1.1rem; }
+  }
+  .modulex-acilis-katman-patlama-h1 { font-family: var(--mx-font-heading, inherit); font-size: clamp(2.3rem, 5.2vw, 4.2rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; text-wrap: balance; }
+  .modulex-acilis-katman-patlama-metin { color: --muted--; font-size: clamp(1.02rem, 1.3vw, 1.18rem); line-height: 1.7; max-width: 62ch; }
+  .modulex-acilis-katman-patlama-ogeler { display: flex; flex-wrap: wrap; gap: 14px 30px; }
+  .modulex-acilis-katman-patlama-oge { display: flex; align-items: center; gap: 10px; }
+  .modulex-acilis-katman-patlama-oikon { color: --accentInk--; font-size: 22px; }
+  .modulex-acilis-katman-patlama-odeger { font-size: 1.45rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+  .modulex-acilis-katman-patlama-ometin { color: --muted--; font-size: 0.95rem; }
+  .modulex-acilis-katman-patlama-obag { color: inherit; text-underline-offset: 3px; }
+  .modulex-acilis-katman-patlama-gir { animation: modulex-acilis-katman-patlama-gir 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  @keyframes modulex-acilis-katman-patlama-gir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-acilis-katman-patlama-h1 { letter-spacing: 0; line-height: 1.3; }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-acilis-katman-patlama :is(.modulex-acilis-katman-patlama-baslik, .modulex-acilis-katman-patlama-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-acilis-katman-patlama-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-acilis-katman-patlama { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-acilis-katman-patlama *, .modulex-acilis-katman-patlama *::before, .modulex-acilis-katman-patlama *::after { animation: none !important; transition: none !important; }
+  }
+</style>

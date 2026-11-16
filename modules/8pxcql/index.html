@@ -1,0 +1,102 @@
+<section class="modulex-deger-ilke-kanit{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-deger-ilke-kanit-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* deger-ilke-kanit — deger-tablo ve deger-numara-serit tek satırda ikon-başlık-metin dizer; bu modül iki ayrı sütunu (iddia ↔ kanıt) görsel bir bağlantı çizgisiyle eşler, mobilde çizgi dikeye döner. */
+  .modulex-deger-ilke-kanit { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-deger-ilke-kanit *, .modulex-deger-ilke-kanit *::before, .modulex-deger-ilke-kanit *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-deger-ilke-kanit :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-deger-ilke-kanit :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-deger-ilke-kanit :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-deger-ilke-kanit :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-deger-ilke-kanit img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-deger-ilke-kanit) img { height: auto; }
+  .modulex-deger-ilke-kanit [hidden] { display: none !important; }
+  .modulex-deger-ilke-kanit :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-deger-ilke-kanit :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-deger-ilke-kanit-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-deger-ilke-kanit-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-deger-ilke-kanit--bassiz .modulex-deger-ilke-kanit-bas { display: none; }
+  .modulex-deger-ilke-kanit-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-deger-ilke-kanit-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-deger-ilke-kanit-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-deger-ilke-kanit-bas { max-width: 780px; margin-inline: auto; text-align: center; justify-items: center; }
+  .modulex-deger-ilke-kanit-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-deger-ilke-kanit-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-deger-ilke-kanit-dugme:hover { transform: translateY(-2px); }
+  .modulex-deger-ilke-kanit-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-deger-ilke-kanit-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-deger-ilke-kanit-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-deger-ilke-kanit-kolonlar, .modulex-deger-ilke-kanit-satir { display: grid; grid-template-columns: minmax(0, 1fr) clamp(56px, 9vw, 130px) minmax(0, 1.2fr); align-items: center; }
+  .modulex-deger-ilke-kanit-kolonlar { margin-block-end: 14px; }
+  .modulex-deger-ilke-kanit-kolon { color: --accentInk--; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-deger-ilke-kanit-liste { display: grid; gap: 14px; }
+  .modulex-deger-ilke-kanit-satir { position: relative; }
+  .modulex-deger-ilke-kanit-ilke { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 2px 14px; padding: 18px 20px; border: 1px solid --cizgi--; border-radius: --yuvarlak--; background: --kartBg--; transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+  .modulex-deger-ilke-kanit-ikon { grid-row: span 2; display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: color-mix(in srgb, --accent-- 14%, transparent); color: --accentInk--; font-size: 24px; transition: background 0.3s ease, color 0.3s ease; }
+  .modulex-deger-ilke-kanit-no { color: --muted--; font-size: 0.78rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .modulex-deger-ilke-kanit-kbaslik { font-size: 1.1rem; font-weight: 750; line-height: 1.25; }
+  .modulex-deger-ilke-kanit-hat { position: relative; height: 2px; margin-inline: 8px; background: repeating-linear-gradient(90deg, --cizgi-- 0 8px, transparent 8px 14px); transform-origin: 0 50%; transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--i) * 0.14s), background 0.3s ease; }
+  [dir="rtl"] .modulex-deger-ilke-kanit-hat { transform-origin: 100% 50%; }
+  .modulex-deger-ilke-kanit-hat::before, .modulex-deger-ilke-kanit-hat::after { content: ""; position: absolute; inset-block-start: -4px; width: 10px; height: 10px; border: 2px solid --accent--; border-radius: 50%; background: --bg--; }
+  .modulex-deger-ilke-kanit-hat::before { inset-inline-start: -6px; }
+  .modulex-deger-ilke-kanit-hat::after { inset-inline-end: -6px; background: --accent--; }
+  .modulex-deger-ilke-kanit--hazir:not(.modulex-deger-ilke-kanit--gor) .modulex-deger-ilke-kanit-hat { transform: scaleX(0); }
+  .modulex-deger-ilke-kanit-kanit { display: grid; gap: 6px; padding-block: 12px; padding-inline: 20px 4px; border-inline-start: 3px solid --accent--; }
+  .modulex-deger-ilke-kanit-olcu { color: --accentInk--; font-family: var(--mx-font-heading, inherit); font-size: clamp(1.3rem, 2.2vw, 1.7rem); font-weight: 800; line-height: 1.15; }
+  .modulex-deger-ilke-kanit-kmetin { color: --muted--; }
+  .modulex-deger-ilke-kanit-satir:hover .modulex-deger-ilke-kanit-ilke, .modulex-deger-ilke-kanit-satir:focus-within .modulex-deger-ilke-kanit-ilke { border-color: transparent; background: --vurguBg--; color: --vurguText--; }
+  .modulex-deger-ilke-kanit-satir:hover .modulex-deger-ilke-kanit-ikon, .modulex-deger-ilke-kanit-satir:focus-within .modulex-deger-ilke-kanit-ikon { background: color-mix(in srgb, --vurguText-- 18%, transparent); color: --vurguText--; }
+  .modulex-deger-ilke-kanit-satir:hover .modulex-deger-ilke-kanit-no, .modulex-deger-ilke-kanit-satir:focus-within .modulex-deger-ilke-kanit-no { color: inherit; }
+  .modulex-deger-ilke-kanit-satir:hover .modulex-deger-ilke-kanit-hat, .modulex-deger-ilke-kanit-satir:focus-within .modulex-deger-ilke-kanit-hat { background: --accent--; }
+  @media (max-width: 768px) {
+    .modulex-deger-ilke-kanit-kolonlar { display: none; }
+    .modulex-deger-ilke-kanit-satir { grid-template-columns: minmax(0, 1fr); }
+    .modulex-deger-ilke-kanit-hat { width: 2px; height: 30px; margin: 0; margin-inline-start: 41px; background: repeating-linear-gradient(180deg, --cizgi-- 0 6px, transparent 6px 10px); transform-origin: 50% 0; }
+    [dir="rtl"] .modulex-deger-ilke-kanit-hat { transform-origin: 50% 0; }
+    .modulex-deger-ilke-kanit--hazir:not(.modulex-deger-ilke-kanit--gor) .modulex-deger-ilke-kanit-hat { transform: scaleY(0); }
+    .modulex-deger-ilke-kanit-hat::before, .modulex-deger-ilke-kanit-hat::after { inset-inline-start: -4px; inset-inline-end: auto; }
+    .modulex-deger-ilke-kanit-hat::before { inset-block-start: -6px; }
+    .modulex-deger-ilke-kanit-hat::after { inset-block-start: auto; inset-block-end: -6px; }
+  }
+  .modulex-deger-ilke-kanit-bag { color: inherit; text-decoration: none; }
+  .modulex-deger-ilke-kanit-bag::after { content: ""; position: absolute; inset: 0; z-index: 3; }
+  .modulex-deger-ilke-kanit-bag:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-deger-ilke-kanit :is(.modulex-deger-ilke-kanit-baslik, .modulex-deger-ilke-kanit-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-deger-ilke-kanit-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-deger-ilke-kanit { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-deger-ilke-kanit *, .modulex-deger-ilke-kanit *::before, .modulex-deger-ilke-kanit *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const P = "modulex-deger-ilke-kanit";
+    const az = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const gozlem = (s, P, az) => {
+        const gor = () => s.classList.add(P + "--gor");
+        s.classList.add(P + "--hazir");
+        if (az || !("IntersectionObserver" in window)) { gor(); return; }
+        const io = new IntersectionObserver((gs) => {
+          gs.forEach((g) => { if (g.isIntersecting) { gor(); io.disconnect(); } });
+        }, { threshold: 0.15 });
+        io.observe(s);
+      };
+    document.querySelectorAll("." + P).forEach((s) => {
+      if (s.dataset.fbHazir) return;
+      s.dataset.fbHazir = "1";
+      gozlem(s, P, az);
+    });
+  })();
+</script>

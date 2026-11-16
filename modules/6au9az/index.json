@@ -1,0 +1,54 @@
+{
+  "name": "SSS Tümünü Aç — araç çubuklu çoklu akordeon",
+  "description": "Numara sütunlu, çizgili bir soru çizelgesi; üstünde yapışkan araç çubuğu: «Tümü» düğmesi bütün cevapları açar/kapatır (aria-pressed), soru dilimleri (01 · 02 …) tek tıkla o soruyu açıp görünür alana kaydırır ve açık olanları dolu gösterir, sayaç açık soru sayısını verir (3 / 7). Birden çok soru aynı anda açık kalabilir; kapalı/açık durumu onay kutusu gibi dolan kare işaretle görünür. JS yokken araç çubuğu gizli, akordeon yerel. Ailedeki akordeonların hepsi tek tek açılır (çoğu tek açık); bu modül teknik/yoğun SSS'ler için toplu kontrol sunar — tümünü aç/kapat, soru dilimleriyle atlama ve açık soru sayacı olan yapışkan araç çubuğu + numara sütunlu çizelge akordeon. Metinler dil sözlüğü, renkler desing + var(--mx-site-*), mantıksal CSS → RTL. Açılırlar yerel <details> (JS'siz). Veri yoksa blok basılmaz.",
+  "version": "1.0.0",
+  "icon": "unfold_more",
+  "category": "faq",
+  "subCategory": "expand-all-toolbar",
+  "tags": [
+    "faq",
+    "accordion",
+    "expand-all",
+    "toolbar",
+    "details",
+    "rtl",
+    "fabrika"
+  ],
+  "desing": {
+    "max": "1200px",
+    "bosluk": "clamp(56px, 8vw, 104px)",
+    "yuvarlak": "18px",
+    "ust": "",
+    "baslik": "",
+    "metin": "",
+    "tekAcik": "",
+    "ilkAcik": "",
+    "cta_ad": "",
+    "cta_url": "",
+    "bg": "var(--mx-site-bg, #ffffff)",
+    "text": "var(--mx-site-text, #111318)",
+    "muted": "color-mix(in srgb, var(--mx-site-text, #111318) 68%, var(--mx-site-bg, #ffffff))",
+    "kartBg": "var(--mx-site-surface, #f6f7f9)",
+    "cizgi": "color-mix(in srgb, var(--mx-site-text, #111318) 12%, transparent)",
+    "accent": "var(--mx-site-primary, #2563eb)",
+    "accentInk": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 70%, var(--mx-site-text, #111318))",
+    "accentText": "var(--mx-site-primary-contrast, #ffffff)",
+    "vurguBg": "var(--mx-site-primary, #2563eb)",
+    "vurguText": "var(--mx-site-primary-contrast, #ffffff)",
+    "bgcolor": "var(--mx-site-bg, #ffffff)",
+    "color": "var(--mx-site-text, #111318)"
+  },
+  "data": [],
+  "veri": {
+    "statik": true,
+    "dinamik": false,
+    "kaynak": "data",
+    "alanlar": {
+      "soru": "dil sözlüğü (zorunlu; eski `question`)",
+      "cevap": "dil sözlüğü (eski `answer`)",
+      "kategori": "grup adı, dil sözlüğü (gruplayan yerleşimde)",
+      "ikon": "Material Symbols adı (destekleyen yerleşimde)",
+      "url": "«Devamı» bağlantısı (iç slug ya da tam URL)"
+    }
+  }
+}

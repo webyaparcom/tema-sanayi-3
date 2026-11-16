@@ -1,0 +1,52 @@
+{
+  "name": "Üst Dikey Ray — geniş ekranda kenara sabit dikey menü",
+  "description": "Geniş ekranda başlık yatay çubuk değil: sayfanın başlangıç kenarına sabitlenmiş tam boy dikey ray. Üstte logo, ortada alt alta sayfalar (etkin sayfa kartlı ve kenar çizgili; üzerine gelince içeri kayar), dipte telefon, e-posta, dil ve tam genişlik düğme; sayfa içeriği rayın yanından akar. Dar ekranda üst çubuk + açılır liste. Menü yatay değil, ekran kenarına çakılı dikey bir ray: yönetim paneli/uygulama dili — sayfa ne kadar kayarsa kaysın gezinme ve iletişim hep yerinde. Sayfalar site sayfalarından, dil seçici {{langbar}}, logo {{logo}}. Mobil menü erişilebilir (aria-expanded, Esc, odak). Renkler desing + var(--mx-site-*); mantıksal CSS → RTL.",
+  "version": "1.0.0",
+  "icon": "view_sidebar",
+  "category": "menu",
+  "subCategory": "side-rail",
+  "tags": [
+    "menu",
+    "sidebar",
+    "vertical-rail",
+    "fixed",
+    "dashboard",
+    "rtl",
+    "fabrika"
+  ],
+  "desing": {
+    "max": "1200px",
+    "bosluk": "0px",
+    "yuvarlak": "18px",
+    "ust": "",
+    "baslik": "",
+    "metin": "",
+    "cta_ad": "",
+    "cta_url": "",
+    "tel": "",
+    "logoimg": "",
+    "bg": "var(--mx-site-surface, #f6f7f9)",
+    "text": "var(--mx-site-text, #111318)",
+    "muted": "color-mix(in srgb, var(--mx-site-text, #111318) 70%, var(--mx-site-surface, #f6f7f9))",
+    "kartBg": "var(--mx-site-bg, #ffffff)",
+    "cizgi": "color-mix(in srgb, var(--mx-site-text, #111318) 12%, transparent)",
+    "accent": "var(--mx-site-primary, #2563eb)",
+    "accentInk": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 70%, var(--mx-site-text, #111318))",
+    "accentText": "var(--mx-site-primary-contrast, #ffffff)",
+    "vurguBg": "var(--mx-site-primary, #2563eb)",
+    "vurguText": "var(--mx-site-primary-contrast, #ffffff)",
+    "logoH": "44px",
+    "bgcolor": "var(--mx-site-surface, #f6f7f9)",
+    "color": "var(--mx-site-text, #111318)"
+  },
+  "data": [],
+  "veri": {
+    "statik": true,
+    "dinamik": false,
+    "kaynak": "data",
+    "alanlar": {
+      "name": "ek bağlantı adı (dil sözlüğü)",
+      "url": "iç yol ya da dış adres (dış adres yeni sekmede)"
+    }
+  }
+}

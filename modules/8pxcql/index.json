@@ -1,0 +1,53 @@
+{
+  "name": "Değer İlke → Kanıt — iki sütun eşleme çizgili ilke tablosu",
+  "description": "Her satır bir eşleme: solda ilke kartı (ikon, no, başlık), sağda kanıtı (öne çıkan ölçü — `etiket` — ve açıklama); ikisini uçlarında düğüm olan kesikli bir bağ çizgisi birleştirir. Görününce çizgiler sırayla çizilir, satıra gelince ilke kartı ve çizgi vurgulanır. Sütun başlıkları desing `solMetin`/`sagMetin`. deger-tablo ve deger-numara-serit tek satırda ikon-başlık-metin dizer; bu modül iki ayrı sütunu (iddia ↔ kanıt) görsel bir bağlantı çizgisiyle eşler, mobilde çizgi dikeye döner. Metinler dil sözlüğü, renkler desing + var(--mx-site-*), mantıksal CSS → RTL. Veri yoksa blok basılmaz.",
+  "version": "1.0.0",
+  "icon": "rule",
+  "category": "values",
+  "subCategory": "principle-proof",
+  "tags": [
+    "values",
+    "mapping",
+    "proof",
+    "two-column",
+    "connector",
+    "rtl",
+    "fabrika"
+  ],
+  "desing": {
+    "max": "1200px",
+    "bosluk": "clamp(56px, 8vw, 104px)",
+    "yuvarlak": "18px",
+    "ust": "",
+    "baslik": "",
+    "metin": "",
+    "bg": "var(--mx-site-surface, #f6f7f9)",
+    "text": "var(--mx-site-text, #111318)",
+    "muted": "color-mix(in srgb, var(--mx-site-text, #111318) 70%, var(--mx-site-surface, #f6f7f9))",
+    "kartBg": "var(--mx-site-bg, #ffffff)",
+    "cizgi": "color-mix(in srgb, var(--mx-site-text, #111318) 12%, transparent)",
+    "accent": "var(--mx-site-primary, #2563eb)",
+    "accentInk": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 70%, var(--mx-site-text, #111318))",
+    "accentText": "var(--mx-site-primary-contrast, #ffffff)",
+    "vurguBg": "var(--mx-site-primary, #2563eb)",
+    "vurguText": "var(--mx-site-primary-contrast, #ffffff)",
+    "solMetin": "",
+    "sagMetin": "",
+    "bgcolor": "var(--mx-site-surface, #f6f7f9)",
+    "color": "var(--mx-site-text, #111318)"
+  },
+  "data": [],
+  "veri": {
+    "statik": true,
+    "dinamik": false,
+    "kaynak": "data",
+    "alanlar": {
+      "ikon": "Material Symbols adı",
+      "baslik": "dil sözlüğü (zorunlu)",
+      "metin": "dil sözlüğü",
+      "etiket": "dil sözlüğü (küçük üst etiket)",
+      "img": "görsel yolu (destekleyen yerleşimde)",
+      "url": "iç/dış bağlantı (kartın tamamı tıklanır)"
+    }
+  }
+}

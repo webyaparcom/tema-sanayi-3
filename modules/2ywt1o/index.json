@@ -1,0 +1,57 @@
+{
+  "name": "İletişim Fuar Standı — boyun ipine asılı yaka kartı: stand yeri + kanallar, holografik şerit",
+  "description": "Bir yanda üst etiket, başlık, metin ve sosyal çipler; öbür yanda boyun ipine (çizgili şerit + metal toka) asılı, hafifçe sallanan bir fuar yaka kartı: delikli üst bant vurgu renginde marka adı ve rozet ikonu, ortada kesikli çerçeveli «stand» kutusu (adres satırı: salon / stand no; yol tarifi), altında telefon · WhatsApp · e-posta · saat satırları ve kartın dibinde kayan holografik şerit. Üzerine gelince kart 3B eğilir. Ailede YAKA KARTI nesnesi olan tek modül: clip-path ile daralan ip şeridi, toka, punch deliği (inset gölge), transform-origin tepeden sallanma + hover'da perspective rotateX/rotateY eğimi, background-position kayan holografik folyo; adres «stand konumu» kutusu olarak öne çıkar (iletisim-bilet'in koçanlı bilet nesnesinden farklı). Kanallar desing'den (adres · telefon · WhatsApp · e-posta · saat) + data satırları; etiketler dil sözlüğü, renkler desing + var(--mx-site-*), mantıksal CSS → RTL. Kanal yoksa blok basılmaz.",
+  "version": "1.0.0",
+  "icon": "badge",
+  "category": "contact",
+  "subCategory": "fair-badge",
+  "tags": [
+    "contact",
+    "fair",
+    "badge",
+    "lanyard",
+    "object",
+    "rtl",
+    "fabrika"
+  ],
+  "desing": {
+    "max": "1200px",
+    "bosluk": "clamp(56px, 8vw, 104px)",
+    "yuvarlak": "18px",
+    "ust": "",
+    "baslik": "",
+    "metin": "",
+    "adres": "",
+    "telefon": "",
+    "eposta": "",
+    "whatsapp": "",
+    "saat": "",
+    "haritaUrl": "",
+    "haritaGomme": "",
+    "waMesaj": "",
+    "bg": "var(--mx-site-surface, #f6f7f9)",
+    "text": "var(--mx-site-text, #111318)",
+    "muted": "color-mix(in srgb, var(--mx-site-text, #111318) 70%, var(--mx-site-surface, #f6f7f9))",
+    "kartBg": "var(--mx-site-bg, #ffffff)",
+    "cizgi": "color-mix(in srgb, var(--mx-site-text, #111318) 12%, transparent)",
+    "accent": "var(--mx-site-primary, #2563eb)",
+    "accentInk": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 70%, var(--mx-site-text, #111318))",
+    "accentText": "var(--mx-site-primary-contrast, #ffffff)",
+    "vurguBg": "var(--mx-site-primary, #2563eb)",
+    "vurguText": "var(--mx-site-primary-contrast, #ffffff)",
+    "bgcolor": "var(--mx-site-surface, #f6f7f9)",
+    "color": "var(--mx-site-text, #111318)"
+  },
+  "data": [],
+  "veri": {
+    "statik": true,
+    "dinamik": false,
+    "kaynak": "desing",
+    "alanlar": {
+      "ikon": "Material Symbols adı (kanal türü ikondan da anlaşılır: mail · call · location_on · schedule)",
+      "deger": "dil sözlüğü (görünen değer, zorunlu; eski `text`)",
+      "url": "bağlantı (boşsa e-posta/telefon/haritadan türetilir)",
+      "baslik": "dil sözlüğü (kanal etiketi)"
+    }
+  }
+}

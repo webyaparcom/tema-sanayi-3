@@ -1,0 +1,108 @@
+<section class="modulex-zaman-gantt{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-zaman-gantt-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* zaman-gantt — Mevcut 23 timeline modülü olayları eşit aralıklı nokta/kart/satır olarak dizer; zaman-gantt süreyi ölçekli çizer: ortak yıl ekseni, başlangıç–bitiş çubukları ve eş zamanlı (çakışan) dönemler — proje/üretim planı dili. zaman-kurulus-surgu tek yıl seçtirir, zaman-kronik-tablo yalnız yıl yazar; burada süre ve örtüşme görünür. */
+  .modulex-zaman-gantt { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-zaman-gantt *, .modulex-zaman-gantt *::before, .modulex-zaman-gantt *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-zaman-gantt :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-zaman-gantt :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-zaman-gantt :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-zaman-gantt :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-zaman-gantt img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-zaman-gantt) img { height: auto; }
+  .modulex-zaman-gantt [hidden] { display: none !important; }
+  .modulex-zaman-gantt :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-zaman-gantt :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-zaman-gantt-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-zaman-gantt-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-zaman-gantt--bassiz .modulex-zaman-gantt-bas { display: none; }
+  .modulex-zaman-gantt-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-zaman-gantt-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-zaman-gantt-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-zaman-gantt-bas { max-width: 760px; }
+  .modulex-zaman-gantt-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-zaman-gantt-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-zaman-gantt-dugme:hover { transform: translateY(-2px); }
+  .modulex-zaman-gantt-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-zaman-gantt-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-zaman-gantt-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-zaman-gantt-gantt { display: grid; }
+  .modulex-zaman-gantt-eksen { position: sticky; inset-block-start: 64px; z-index: 2; display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 0 28px; padding-block-start: 8px; background-color: --bg--; }
+  .modulex-zaman-gantt-olcek { position: relative; height: 34px; border-block-end: 2px solid --text--; }
+  .modulex-zaman-gantt-tik { position: absolute; inset-block-end: 10px; inset-inline-start: calc(var(--x) * 100%); color: --muted--; font-size: 0.8rem; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; translate: -50% 0; }
+  .modulex-zaman-gantt-tik::after { content: ""; position: absolute; inset-block-start: calc(100% + 2px); inset-inline-start: 50%; width: 1px; height: 8px; background-color: --text--; }
+  .modulex-zaman-gantt-tik:dir(rtl) { translate: 50% 0; }
+  .modulex-zaman-gantt-tik.modulex-zaman-gantt-tik--ilk { translate: none; }
+  .modulex-zaman-gantt-tik--ilk::after { inset-inline-start: 0; }
+  .modulex-zaman-gantt-tik--son { translate: -100% 0; }
+  .modulex-zaman-gantt-tik--son:dir(rtl) { translate: 100% 0; }
+  .modulex-zaman-gantt-tik--son::after { inset-inline-start: auto; inset-inline-end: 0; }
+  .modulex-zaman-gantt-satirlar { display: grid; }
+  .modulex-zaman-gantt-satir { position: relative; display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); align-items: center; gap: 0 28px; padding-block: 12px; border-block-end: 1px solid --cizgi--; transition: background-color 0.25s ease; }
+  .modulex-zaman-gantt-satir:hover { background-color: color-mix(in srgb, --accent-- 6%, transparent); }
+  .modulex-zaman-gantt-bilgi { display: flex; align-items: flex-start; gap: 12px; padding-inline-start: 6px; }
+  .modulex-zaman-gantt-ikon { flex: none; display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background-color: color-mix(in srgb, --accent-- 12%, transparent); color: --accentInk--; font-size: 22px; }
+  .modulex-zaman-gantt-yazi { display: grid; gap: 4px; min-width: 0; }
+  .modulex-zaman-gantt-kbaslik { font-size: 1.05rem; font-weight: 750; line-height: 1.3; }
+  .modulex-zaman-gantt-kmetin { color: --muted--; font-size: 0.9rem; line-height: 1.55; }
+  .modulex-zaman-gantt-iz { position: relative; align-self: stretch; min-height: 76px; border-inline: 1px solid --cizgi--; background-image: repeating-linear-gradient(to right, --cizgi-- 0 1px, transparent 1px calc(100% / var(--n))); }
+  .modulex-zaman-gantt-iz:dir(rtl) { background-image: repeating-linear-gradient(to left, --cizgi-- 0 1px, transparent 1px calc(100% / var(--n))); }
+  .modulex-zaman-gantt-cubuk { position: absolute; inset-block-end: 16px; inset-inline-start: calc(var(--b) * 100%); width: calc(var(--w) * 100%); min-width: 12px; height: 18px; border-radius: 999px; background-color: --accent--; box-shadow: 0 8px 16px -10px --accent--; transform-origin: 0 50%; transition: height 0.25s ease, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .modulex-zaman-gantt-cubuk:dir(rtl) { transform-origin: 100% 50%; }
+  .modulex-zaman-gantt-satir:hover .modulex-zaman-gantt-cubuk { height: 24px; }
+  .modulex-zaman-gantt-cubuk--acik { background-color: transparent; background-image: linear-gradient(to right, --accent-- 62%, color-mix(in srgb, --accent-- 18%, transparent)); }
+  .modulex-zaman-gantt-cubuk--acik:dir(rtl) { background-image: linear-gradient(to left, --accent-- 62%, color-mix(in srgb, --accent-- 18%, transparent)); }
+  .modulex-zaman-gantt-aralik { position: absolute; inset-block-end: 42px; inset-inline-start: calc(var(--b) * 100%); display: inline-flex; align-items: center; gap: 4px; color: --text--; font-size: 0.85rem; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .modulex-zaman-gantt-aralik--sondan { inset-inline-start: auto; inset-inline-end: calc((1 - var(--b) - var(--w)) * 100%); }
+  .modulex-zaman-gantt-aralik .material-symbols-outlined { color: --accentInk--; font-size: 16px; }
+  .modulex-zaman-gantt--hazir:not(.modulex-zaman-gantt--gor) .modulex-zaman-gantt-cubuk { transform: scaleX(0); }
+  @media (max-width: 768px) {
+    .modulex-zaman-gantt-eksen, .modulex-zaman-gantt-satir { grid-template-columns: minmax(0, 1fr); }
+    .modulex-zaman-gantt-ebos { display: none; }
+    .modulex-zaman-gantt-satir { gap: 8px; }
+    .modulex-zaman-gantt-bilgi { padding-inline-start: 0; }
+    .modulex-zaman-gantt-iz { min-height: 60px; }
+    .modulex-zaman-gantt-tik { font-size: 0.7rem; }
+  }
+  .modulex-zaman-gantt-bag { color: inherit; text-decoration: none; }
+  .modulex-zaman-gantt-bag::after { content: ""; position: absolute; inset: 0; z-index: 3; }
+  .modulex-zaman-gantt-bag:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-zaman-gantt :is(.modulex-zaman-gantt-baslik, .modulex-zaman-gantt-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-zaman-gantt-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-zaman-gantt { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-zaman-gantt *, .modulex-zaman-gantt *::before, .modulex-zaman-gantt *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const P = "modulex-zaman-gantt";
+    const az = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const gozlem = (s, P, az) => {
+        const gor = () => s.classList.add(P + "--gor");
+        s.classList.add(P + "--hazir");
+        if (az || !("IntersectionObserver" in window)) { gor(); return; }
+        const io = new IntersectionObserver((gs) => {
+          gs.forEach((g) => { if (g.isIntersecting) { gor(); io.disconnect(); } });
+        }, { threshold: 0.15 });
+        io.observe(s);
+      };
+    document.querySelectorAll("." + P).forEach((s) => {
+      if (s.dataset.fbHazir) return;
+      s.dataset.fbHazir = "1";
+      gozlem(s, P, az);
+    });
+  })();
+</script>

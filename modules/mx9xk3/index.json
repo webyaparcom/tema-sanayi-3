@@ -1,0 +1,51 @@
+{
+  "name": "Zaman Gantt — yıl ekseninde üst üste binen dönem çubukları",
+  "description": "Her dönem bir satır: solda ikon, başlık ve metin; sağda ortak yıl ekseninde başlangıç–bitiş çubuğu (gerçek yıl oranıyla). Eş zamanlı dönemler üst üste biner, son dönem «sürüyor» olarak açık uçlu solar; yıl ekseni yapışkan, ızgara çizgileri adım adım; çubuklar görünür olunca eksenden uzar. Veride `bitis` (ya da etikette «2009–2014») yoksa dönem bir sonrakinin başlangıcına dek sürer. Mevcut 23 timeline modülü olayları eşit aralıklı nokta/kart/satır olarak dizer; zaman-gantt süreyi ölçekli çizer: ortak yıl ekseni, başlangıç–bitiş çubukları ve eş zamanlı (çakışan) dönemler — proje/üretim planı dili. zaman-kurulus-surgu tek yıl seçtirir, zaman-kronik-tablo yalnız yıl yazar; burada süre ve örtüşme görünür. Metinler dil sözlüğü, renkler desing + var(--mx-site-*), mantıksal CSS → RTL. Veri yoksa blok basılmaz.",
+  "version": "1.0.0",
+  "icon": "view_timeline",
+  "category": "timeline",
+  "subCategory": "gantt",
+  "tags": [
+    "timeline",
+    "gantt",
+    "duration",
+    "scale",
+    "overlap",
+    "rtl",
+    "fabrika"
+  ],
+  "desing": {
+    "max": "1200px",
+    "bosluk": "clamp(56px, 8vw, 104px)",
+    "yuvarlak": "18px",
+    "ust": "",
+    "baslik": "",
+    "metin": "",
+    "bg": "var(--mx-site-bg, #ffffff)",
+    "text": "var(--mx-site-text, #111318)",
+    "muted": "color-mix(in srgb, var(--mx-site-text, #111318) 68%, var(--mx-site-bg, #ffffff))",
+    "kartBg": "var(--mx-site-surface, #f6f7f9)",
+    "cizgi": "color-mix(in srgb, var(--mx-site-text, #111318) 12%, transparent)",
+    "accent": "var(--mx-site-primary, #2563eb)",
+    "accentInk": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 70%, var(--mx-site-text, #111318))",
+    "accentText": "var(--mx-site-primary-contrast, #ffffff)",
+    "vurguBg": "var(--mx-site-primary, #2563eb)",
+    "vurguText": "var(--mx-site-primary-contrast, #ffffff)",
+    "bgcolor": "var(--mx-site-bg, #ffffff)",
+    "color": "var(--mx-site-text, #111318)"
+  },
+  "data": [],
+  "veri": {
+    "statik": true,
+    "dinamik": false,
+    "kaynak": "data",
+    "alanlar": {
+      "etiket": "yıl / tarih / dönem (dil sözlüğü ya da düz metin)",
+      "baslik": "dil sözlüğü (zorunlu)",
+      "metin": "dil sözlüğü",
+      "ikon": "Material Symbols adı",
+      "img": "görsel yolu (destekleyen yerleşimde)",
+      "url": "iç/dış bağlantı"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "name": "Açılış Katman Patlaması — izometrik üst üste plakalar, kılavuzlu katman etiketleri",
+  "description": "Bir yanda üst etiket, h1, metin, düğmeler ve rozet; diğer yanda izometrik (rotateX + rotateZ) üst üste duran plakalardan oluşan patlatılmış görünüm: her madde bir katman, en üst plakaya görsel doku olarak basılır; her plakanın yanında kesik kılavuz çizgisiyle bağlanan etiket (ikon · değer · metin). Plakalar girişte yukarıdan düşer; üzerine gelince katmanlar aralanır. acilis-kart-yigini düz kartları kaydırarak üst üste koyar, acilis-izgara-cizgi dik ızgaradır; bu modül maddeleri 3B izometrik katman plakalarına çevirir (ambalaj/ürün katmanları gibi), plakalar ile etiketler kılavuz çizgisiyle bağlanır ve fareyle aralanır. Başlık h1, ilk görsel eager. Metinler dil sözlüğü, renkler desing + var(--mx-site-*), mantıksal CSS → RTL. Başlık yoksa blok basılmaz.",
+  "version": "1.0.0",
+  "icon": "stacks",
+  "category": "hero",
+  "subCategory": "exploded-layers",
+  "tags": [
+    "hero",
+    "isometric",
+    "layers",
+    "3d",
+    "exploded",
+    "rtl",
+    "fabrika"
+  ],
+  "desing": {
+    "max": "1200px",
+    "bosluk": "clamp(56px, 8vw, 104px)",
+    "yuvarlak": "18px",
+    "ust": "",
+    "baslik": "",
+    "metin": "",
+    "img": "",
+    "img2": "",
+    "video": "",
+    "poster": "",
+    "alt": "",
+    "cta_ad": "",
+    "cta_url": "",
+    "cta2_ad": "",
+    "cta2_url": "",
+    "rozet_ikon": "",
+    "rozet_deger": "",
+    "rozet_metin": "",
+    "bg": "var(--mx-site-bg, #ffffff)",
+    "text": "var(--mx-site-text, #111318)",
+    "muted": "color-mix(in srgb, var(--mx-site-text, #111318) 68%, var(--mx-site-bg, #ffffff))",
+    "kartBg": "var(--mx-site-surface, #f6f7f9)",
+    "cizgi": "color-mix(in srgb, var(--mx-site-text, #111318) 12%, transparent)",
+    "accent": "var(--mx-site-primary, #2563eb)",
+    "accentInk": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 70%, var(--mx-site-text, #111318))",
+    "accentText": "var(--mx-site-primary-contrast, #ffffff)",
+    "vurguBg": "var(--mx-site-primary, #2563eb)",
+    "vurguText": "var(--mx-site-primary-contrast, #ffffff)",
+    "bgcolor": "var(--mx-site-bg, #ffffff)",
+    "color": "var(--mx-site-text, #111318)"
+  },
+  "data": [],
+  "veri": {
+    "statik": true,
+    "dinamik": false,
+    "kaynak": "desing/data",
+    "alanlar": {
+      "ikon": "madde ikonu (Material Symbols)",
+      "deger": "sayı/değer (ör. 1.200+, dil sözlüğü olabilir)",
+      "metin": "madde metni (dil sözlüğü)",
+      "img": "madde görseli (mozaik yerleşimlerde)",
+      "url": "madde bağlantısı"
+    }
+  }
+}
