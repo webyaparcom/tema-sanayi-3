@@ -4,7 +4,9 @@
       "name": {
         "tr": "Künye",
         "en": "Masthead",
-        "ar": "الترويسة"
+        "ar": "الترويسة",
+        "de": "Redaktion",
+        "ru": "Редакция"
       },
       "status": "play",
       "id": "hakkimizda",
@@ -26,7 +28,9 @@
       "description": {
         "tr": "Ürün kuşakları, ilkeler ve test standı (kurgusal).",
         "en": "Product generations, principles and the test bench (fictional).",
-        "ar": "أجيال المنتجات والمبادئ ومنصة الاختبار (افتراضي)."
+        "ar": "أجيال المنتجات والمبادئ ومنصة الاختبار (افتراضي).",
+        "de": "Produktgenerationen, Grundsätze und Prüfstand (fiktiv).",
+        "ru": "Поколения продуктов, принципы и испытательный стенд (вымышленно)."
       }
     },
     {
@@ -34,12 +38,16 @@
       "name": {
         "tr": "Sorular",
         "en": "Questions",
-        "ar": "الأسئلة"
+        "ar": "الأسئلة",
+        "de": "FAQ",
+        "ru": "FAQ"
       },
       "description": {
         "tr": "Redüktör seçimi, yağ, revizyon ve teslim üzerine okur soruları.",
         "en": "Reader questions on sizing, oil, overhaul and lead time.",
-        "ar": "أسئلة القرّاء عن الاختيار والزيت والصيانة ومدة التسليم."
+        "ar": "أسئلة القرّاء عن الاختيار والزيت والصيانة ومدة التسليم.",
+        "de": "Leserfragen zu Auswahl, Öl, Überholung und Lieferzeit.",
+        "ru": "Вопросы читателей о подборе, масле, ревизии и сроках поставки."
       },
       "path": "sorular",
       "icon": "help",
@@ -59,12 +67,16 @@
       "name": {
         "tr": "Keşif",
         "en": "Site visit",
-        "ar": "الزيارة"
+        "ar": "الزيارة",
+        "de": "Besichtigung",
+        "ru": "Осмотр"
       },
       "description": {
         "tr": "Kat planından iş seçerek saha keşfi talebi (demo).",
         "en": "Site-visit request by picking jobs on a floor plan (demo).",
-        "ar": "طلب زيارة ميدانية باختيار الأعمال من المخطط (تجريبي)."
+        "ar": "طلب زيارة ميدانية باختيار الأعمال من المخطط (تجريبي).",
+        "de": "Besichtigungsanfrage vor Ort, indem Sie im Grundriss Arbeiten auswählen (Demo).",
+        "ru": "Заявка на выезд на объект с выбором работ по поэтажному плану (демо)."
       },
       "path": "teklif-al",
       "icon": "engineering",
@@ -83,7 +95,9 @@
       "name": {
         "tr": "İletişim",
         "en": "Contact",
-        "ar": "اتصل بنا"
+        "ar": "اتصل بنا",
+        "de": "Kontakt",
+        "ru": "Контакты"
       },
       "status": "play",
       "id": "iletisim",
@@ -104,7 +118,9 @@
       "description": {
         "tr": "Fabrika adresi, fuar standı, telefon ve saatler.",
         "en": "Plant address, trade-fair stand, phone and hours.",
-        "ar": "عنوان المصنع وجناح المعرض والهاتف والساعات."
+        "ar": "عنوان المصنع وجناح المعرض والهاتف والساعات.",
+        "de": "Fabrikadresse, Messestand, Telefon und Zeiten.",
+        "ru": "Адрес фабрики, выставочный стенд, телефон и часы."
       }
     }
   ],

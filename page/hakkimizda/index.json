@@ -2,7 +2,9 @@
   "name": {
     "tr": "Künye",
     "en": "Masthead",
-    "ar": "الترويسة"
+    "ar": "الترويسة",
+    "de": "Redaktion",
+    "ru": "Редакция"
   },
   "status": "play",
   "category": "",
@@ -24,7 +26,9 @@
   "description": {
     "tr": "Ürün kuşakları, ilkeler ve test standı (kurgusal).",
     "en": "Product generations, principles and the test bench (fictional).",
-    "ar": "أجيال المنتجات والمبادئ ومنصة الاختبار (افتراضي)."
+    "ar": "أجيال المنتجات والمبادئ ومنصة الاختبار (افتراضي).",
+    "de": "Produktgenerationen, Grundsätze und Prüfstand (fiktiv).",
+    "ru": "Поколения продуктов, принципы и испытательный стенд (вымышленно)."
   },
   "spot": {
     "tr": "",
@@ -35,12 +39,16 @@
   "title": {
     "tr": "Künye",
     "en": "Masthead",
-    "ar": "الترويسة"
+    "ar": "الترويسة",
+    "de": "Redaktion",
+    "ru": "Редакция"
   },
   "keyword": {
     "tr": "künye, redüktör serileri",
     "en": "masthead, gearbox series",
-    "ar": "الترويسة، سلاسل علب التروس"
+    "ar": "الترويسة، سلاسل علب التروس",
+    "de": "Impressum, Getriebereihen",
+    "ru": "выходные данные, серии редукторов"
   },
   "text": {},
   "update": "2026-11-16T20:24:51.167Z",
