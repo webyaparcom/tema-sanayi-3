@@ -3,17 +3,23 @@
   "name": {
     "tr": "Misyon",
     "en": "Mission",
-    "ar": "المهمة"
+    "ar": "المهمة",
+    "de": "Mission",
+    "ru": "Миссия"
   },
   "description": {
     "tr": "Misyonumuz",
     "en": "Our mission",
-    "ar": "مهمتنا"
+    "ar": "مهمتنا",
+    "de": "Unsere Mission",
+    "ru": "Наша миссия"
   },
   "keyword": {
     "tr": "Misyon",
     "en": "mission, our mission, corporate responsibility",
-    "ar": "الرسالة, رسالتنا, المسؤولية المؤسسية"
+    "ar": "الرسالة, رسالتنا, المسؤولية المؤسسية",
+    "de": "Mission",
+    "ru": "Миссия"
   },
   "path": "misyon",
   "icon": "flag",
@@ -29,12 +35,16 @@
   "text": {
     "tr": "<h2>Misyonumuz</h2>\n<p>Makinenin kalbindeki redüktörü, yük altında denenmiş ve ölçüsü kayda geçmiş olarak teslim etmek.</p>",
     "en": "<h2>Our mission</h2>\n<p>To deliver the gearbox at the heart of the machine tested under load, with its measurements on record.</p>",
-    "ar": "<h2>مهمتنا</h2>\n<p>تسليم علبة التروس التي في قلب الآلة مختبرةً تحت الحمل ومسجّلة القياسات.</p>"
+    "ar": "<h2>مهمتنا</h2>\n<p>تسليم علبة التروس التي في قلب الآلة مختبرةً تحت الحمل ومسجّلة القياسات.</p>",
+    "de": "<h2>Unsere Mission</h2>\n<p>Das Getriebe im Herzen der Maschine unter Last geprüft und mit dokumentierten Maßen zu liefern.</p>",
+    "ru": "<h2>Наша миссия</h2>\n<p>Поставлять редуктор — сердце станка — испытанным под нагрузкой и с зафиксированными размерами.</p>"
   },
   "title": {
     "tr": "Misyon",
     "en": "Mission",
-    "ar": "المهمة"
+    "ar": "المهمة",
+    "de": "Mission",
+    "ru": "Миссия"
   },
   "date": "2026-11-16T20:22:06.358Z",
   "update": "2026-11-16T20:24:51.183Z",

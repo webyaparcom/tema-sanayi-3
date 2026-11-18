@@ -3,17 +3,23 @@
   "name": {
     "tr": "Keşif",
     "en": "Site visit",
-    "ar": "الزيارة"
+    "ar": "الزيارة",
+    "de": "Besichtigung",
+    "ru": "Осмотр"
   },
   "description": {
     "tr": "Kat planından iş seçerek saha keşfi talebi (demo).",
     "en": "Site-visit request by picking jobs on a floor plan (demo).",
-    "ar": "طلب زيارة ميدانية باختيار الأعمال من المخطط (تجريبي)."
+    "ar": "طلب زيارة ميدانية باختيار الأعمال من المخطط (تجريبي).",
+    "de": "Besichtigungsanfrage vor Ort, indem Sie im Grundriss Arbeiten auswählen (Demo).",
+    "ru": "Заявка на выезд на объект с выбором работ по поэтажному плану (демо)."
   },
   "keyword": {
     "tr": "saha keşfi, titreşim ölçümü, revizyon",
     "en": "site visit, vibration check, overhaul",
-    "ar": "زيارة ميدانية، قياس الاهتزاز، صيانة"
+    "ar": "زيارة ميدانية، قياس الاهتزاز، صيانة",
+    "de": "Vor-Ort-Aufnahme, Schwingungsmessung, Revision",
+    "ru": "выезд на объект, замер вибрации, ревизия"
   },
   "path": "teklif-al",
   "icon": "engineering",
@@ -32,7 +38,9 @@
   "title": {
     "tr": "Keşif",
     "en": "Site visit",
-    "ar": "الزيارة"
+    "ar": "الزيارة",
+    "de": "Besichtigung",
+    "ru": "Осмотр"
   },
   "date": "2026-11-16T20:22:06.529Z",
   "update": "2026-11-16T20:24:51.174Z"

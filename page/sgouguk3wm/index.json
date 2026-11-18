@@ -3,17 +3,23 @@
   "name": {
     "tr": "Sorular",
     "en": "Questions",
-    "ar": "الأسئلة"
+    "ar": "الأسئلة",
+    "de": "FAQ",
+    "ru": "FAQ"
   },
   "description": {
     "tr": "Redüktör seçimi, yağ, revizyon ve teslim üzerine okur soruları.",
     "en": "Reader questions on sizing, oil, overhaul and lead time.",
-    "ar": "أسئلة القرّاء عن الاختيار والزيت والصيانة ومدة التسليم."
+    "ar": "أسئلة القرّاء عن الاختيار والزيت والصيانة ومدة التسليم.",
+    "de": "Leserfragen zu Auswahl, Öl, Überholung und Lieferzeit.",
+    "ru": "Вопросы читателей о подборе, масле, ревизии и сроках поставки."
   },
   "keyword": {
     "tr": "sss, soru cevap",
     "en": "faq, questions",
-    "ar": "أسئلة وأجوبة"
+    "ar": "أسئلة وأجوبة",
+    "de": "FAQ, Fragen und Antworten",
+    "ru": "FAQ, вопросы и ответы"
   },
   "path": "sorular",
   "icon": "help",
@@ -32,7 +38,9 @@
   "title": {
     "tr": "Sorular",
     "en": "Questions",
-    "ar": "الأسئلة"
+    "ar": "الأسئلة",
+    "de": "FAQ",
+    "ru": "FAQ"
   },
   "date": "2026-11-16T20:22:06.520Z",
   "update": "2026-11-16T20:24:51.171Z"

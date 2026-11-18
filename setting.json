@@ -4,12 +4,16 @@
   "description": {
     "tr": "Eksen Redüktör: Bursa’da helisel, konik-helisel, planet ve servo redüktör üretimi; her redüktör yük altında denenir. Eksen Defteri’nde ürün kuşakları, test standı ve saha keşfi. Demo site; rakamlar kurgusaldır.",
     "en": "Eksen Reducer: helical, bevel-helical, planetary and servo gearboxes made in Bursa; every unit is tested under load. The Eksen Notebook covers product generations, the test bench and site visits. Demo site; figures are fictional.",
-    "ar": "إكسن للمخفّضات: تصنيع علب تروس حلزونية ومخروطية حلزونية وكوكبية ومؤازرة في بورصة؛ ويُختبر كل مخفّض تحت الحمل. يعرض دفتر إكسن أجيال المنتجات ومنصة الاختبار والزيارات الميدانية. موقع تجريبي؛ الأرقام افتراضية."
+    "ar": "إكسن للمخفّضات: تصنيع علب تروس حلزونية ومخروطية حلزونية وكوكبية ومؤازرة في بورصة؛ ويُختبر كل مخفّض تحت الحمل. يعرض دفتر إكسن أجيال المنتجات ومنصة الاختبار والزيارات الميدانية. موقع تجريبي؛ الأرقام افتراضية.",
+    "de": "Eksen Redüktör: Herstellung von Schrägstirnrad-, Kegelstirnrad-, Planeten- und Servogetrieben in Bursa; jedes Getriebe wird unter Last getestet. Im Eksen Defteri finden Sie Produktgenerationen, Prüfstand und Feldbesuche. Demo-Website; die Zahlen sind fiktiv.",
+    "ru": "Eksen Redüktör: производство цилиндрических косозубых, конически-цилиндрических, планетарных и серворедукторов в Бурсе; каждый редуктор испытывается под нагрузкой. В Eksen Defteri — поколения продукции, испытательный стенд и выезды на объекты. Демо-сайт; цифры вымышленные."
   },
   "keyword": {
     "tr": "redüktör, dişli kutusu, helisel redüktör, planet redüktör, servo redüktör, redüktör revizyonu, bursa",
     "en": "gearbox, gear reducer, helical gearbox, planetary gearbox, servo gearbox, gearbox overhaul, bursa",
-    "ar": "علبة تروس، مخفّض سرعة، مخفّض حلزوني، مخفّض كوكبي، مخفّض مؤازر، صيانة علب التروس، بورصة"
+    "ar": "علبة تروس، مخفّض سرعة، مخفّض حلزوني، مخفّض كوكبي، مخفّض مؤازر، صيانة علب التروس، بورصة",
+    "de": "Getriebe, Zahnradgetriebe, Schrägzahngetriebe, Planetengetriebe, Servogetriebe, Getriebeüberholung, Bursa",
+    "ru": "редуктор, зубчатая передача, косозубый редуктор, планетарный редуктор, сервоприводной редуктор, ревизия редуктора, Бурса"
   },
   "category": "Kurumsal",
   "name": "Eksen Redüktör",
@@ -18,15 +22,27 @@
     "tr": true,
     "en": true,
     "ar": true,
-    "de": false,
-    "ru": false,
+    "de": true,
+    "ru": true,
     "es": false,
     "fr": false,
     "it": false,
     "ja": false,
     "zh": false,
     "ko": false,
-    "pt": false
+    "pt": false,
+    "fa": false,
+    "he": false,
+    "ur": false,
+    "nl": false,
+    "pl": false,
+    "uk": false,
+    "az": false,
+    "ka": false,
+    "el": false,
+    "bg": false,
+    "ro": false,
+    "hi": false
   },
   "logo": "logo.png",
   "multi": false,
